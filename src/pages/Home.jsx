@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ContactForm from '../components/ContactForm';
 import ParticlesBackground from '../components/ParticlesBackground';
+import { initHomeAnimations } from '../animations/homeAnimations';
 
 export default function Home() {
     const [selectedProject, setSelectedProject] = useState(null);
@@ -12,15 +13,35 @@ export default function Home() {
 
     useGSAP(() => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // 1. Initialize generic scroll/entry animations natively on existing CSS classes via the helper
+        initHomeAnimations();
+
         if (prefersReducedMotion) {
-            gsap.set('.hero-anim-item', { opacity: 1, y: 0 });
+            // Un-hide all typewriter characters immediately if animations disabled
+            gsap.set('.hero-typewriter .char', { opacity: 1, x: 0 });
             return;
         }
 
-        gsap.fromTo('.hero-anim-item',
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "power3.out", delay: 0.1 }
-        );
+        // 2. Local Typewriter Animation
+        const isMobile = window.matchMedia("(max-width: 480px)").matches;
+
+        const tl = gsap.timeline({ defaults: { ease: "power2.out" }, delay: 0.1 });
+
+        // Let outer container be fully visible
+        gsap.set('.hero-typewriter', { opacity: 1 });
+
+        // Animate each letter
+        const chars = gsap.utils.toArray('.hero-typewriter .char');
+        if (chars.length > 0) {
+            tl.to(chars, {
+                duration: isMobile ? 0.05 : 0.08,
+                opacity: 1,
+                x: 0,
+                stagger: isMobile ? 0.015 : 0.03, // Speed up on mobile
+                ease: "power2.out"
+            });
+        }
     }, { scope: heroRef });
 
     const projects = [
@@ -78,13 +99,39 @@ export default function Home() {
                                 Diseño Web Premium
                             </span>
                         </div>
-                        <h1 className="hero-text mb-8 hero-anim-item" style={{ opacity: 0 }}>
-                            Creamos webs que ayudan a tu<br className="hide-mobile" />
-                            negocio a <span style={{
-                                background: 'linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-color) 100%)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                            }}>crecer</span>.
+                        <h1 className="hero-text mb-8">
+                            {/* Accessible wrapper for screen readers (will read instantly) */}
+                            <span className="sr-only">Creamos webs que ayudan a tu negocio a crecer.</span>
+
+                            {/* Visual Typewriter (hidden from screen readers) */}
+                            <span className="hero-typewriter" aria-hidden="true" style={{ opacity: 0, display: 'inline-block' }}>
+                                {"Creamos webs que ayudan a tu".split('').map((char, index) => (
+                                    <span key={`l1-${index}`} className="char" style={{ opacity: 0, transform: 'translateX(-5px)', display: 'inline-block', whiteSpace: 'pre' }}>
+                                        {char === ' ' ? ' ' : char}
+                                    </span>
+                                ))}
+                                <br className="hide-mobile" />
+                                {"negocio a ".split('').map((char, index) => (
+                                    <span key={`l2-${index}`} className="char" style={{ opacity: 0, transform: 'translateX(-5px)', display: 'inline-block', whiteSpace: 'pre' }}>
+                                        {char === ' ' ? ' ' : char}
+                                    </span>
+                                ))}
+                                <span style={{
+                                    background: 'linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-color) 100%)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                }}>
+                                    {"crecer".split('').map((char, index) => (
+                                        <span key={`l3-${index}`} className="char" style={{ opacity: 0, transform: 'translateX(-5px)', display: 'inline-block', whiteSpace: 'pre' }}>
+                                            {char === ' ' ? ' ' : char}
+                                        </span>
+                                    ))}
+                                </span>
+                                <span className="char" style={{ opacity: 0, transform: 'translateX(-5px)', display: 'inline-block' }}>.</span>
+
+                                {/* CSS Caret */}
+                                <span className="typewriter-caret"></span>
+                            </span>
                         </h1>
                         <p className="mb-8 hero-anim-item" style={{ fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto', color: 'var(--text-secondary)', opacity: 0 }}>
                             Sitios profesionales, rápidos y pensados para generar confianza. Diseño, hosting y dominio incluidos.
