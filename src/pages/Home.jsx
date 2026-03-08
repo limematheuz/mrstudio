@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ContactForm from '../components/ContactForm';
@@ -6,6 +8,20 @@ import ParticlesBackground from '../components/ParticlesBackground';
 
 export default function Home() {
     const [selectedProject, setSelectedProject] = useState(null);
+    const heroRef = useRef(null);
+
+    useGSAP(() => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            gsap.set('.hero-anim-item', { opacity: 1, y: 0 });
+            return;
+        }
+
+        gsap.fromTo('.hero-anim-item',
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "power3.out", delay: 0.1 }
+        );
+    }, { scope: heroRef });
 
     const projects = [
         {
@@ -45,25 +61,10 @@ export default function Home() {
             <ParticlesBackground />
 
             {/* Hero Section */}
-            <section className="section text-center" style={{ paddingTop: '15rem', paddingBottom: '10rem' }}>
+            <section className="section text-center" style={{ paddingTop: '15rem', paddingBottom: '10rem' }} ref={heroRef}>
                 <div className="container">
-                    <motion.div
-                        initial="hidden"
-                        animate="visible"
-                        variants={{
-                            hidden: { opacity: 0 },
-                            visible: {
-                                opacity: 1,
-                                transition: { staggerChildren: 0.2 }
-                            }
-                        }}
-                    >
-                        <motion.div
-                            variants={{
-                                hidden: { opacity: 0, scale: 0.9, y: 20 },
-                                visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
-                            }}
-                        >
+                    <div>
+                        <div className="hero-anim-item" style={{ opacity: 0 }}>
                             <span style={{
                                 display: 'inline-block',
                                 padding: '0.4rem 1rem',
@@ -76,42 +77,23 @@ export default function Home() {
                             }}>
                                 Diseño Web Premium
                             </span>
-                        </motion.div>
-                        <motion.h1
-                            className="hero-text mb-8"
-                            variants={{
-                                hidden: { opacity: 0, y: 30 },
-                                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-                            }}
-                        >
-                            Diseño web que convierte<br />
-                            visitas en <span style={{
+                        </div>
+                        <h1 className="hero-text mb-8 hero-anim-item" style={{ opacity: 0 }}>
+                            Creamos webs que ayudan a tu<br className="hide-mobile" />
+                            negocio a <span style={{
                                 background: 'linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-color) 100%)',
                                 WebkitBackgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent',
-                            }}>clientes</span>.
-                        </motion.h1>
-                        <motion.p
-                            className="mb-8"
-                            style={{ fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto', color: 'var(--text-secondary)' }}
-                            variants={{
-                                hidden: { opacity: 0, y: 20 },
-                                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-                            }}
-                        >
+                            }}>crecer</span>.
+                        </h1>
+                        <p className="mb-8 hero-anim-item" style={{ fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto', color: 'var(--text-secondary)', opacity: 0 }}>
                             Sitios profesionales, rápidos y pensados para generar confianza. Diseño, hosting y dominio incluidos.
-                        </motion.p>
-                        <motion.div
-                            className="hero-buttons"
-                            variants={{
-                                hidden: { opacity: 0, y: 20 },
-                                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-                            }}
-                        >
+                        </p>
+                        <div className="hero-buttons hero-anim-item" style={{ opacity: 0 }}>
                             <a href="#servicios" className="btn-primary">Ver mis servicios</a>
                             <a href="#proyectos" className="btn-secondary">Ver proyectos</a>
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -210,53 +192,78 @@ export default function Home() {
                         </div>
                         <div className="add-service-grid">
                             <AdditionalServiceItem
-                                title="Landing pages promocionales"
+                                icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>}
+                                title="Landing Pages promocionales"
                                 content={
-                                    <div>
-                                        <p>Páginas específicas y atractivas para tus campañas (San Valentín, Black Friday...).</p>
-                                        <ul style={{ paddingLeft: '20px', marginTop: '10px' }}>
-                                            <li>Rápida publicación (1 a 5 días)</li>
-                                            <li>Optimizada para conversiones</li>
-                                            <li>Adaptable a tu branding</li>
+                                    <div style={{ padding: '0.5rem 0' }}>
+                                        <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Páginas específicas y atractivas para tus campañas (San Valentín, Black Friday...).</p>
+                                        <ul style={{ listStyleType: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '1.5rem' }}>
+                                            <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Rápida publicación (1 a 5 días)</li>
+                                            <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Optimizada para conversiones</li>
+                                            <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Adaptable a tu branding</li>
                                         </ul>
-                                        <p style={{ marginTop: '10px', fontSize: '0.9rem', color: 'var(--accent-color)' }}>
-                                            <b>Valor estimado: 120€ - 350€. </b>
-                                            <i>Packs de 3 o 5 landings disponibles con descuento.</i>
-                                        </p>
+                                        <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
+                                            <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Valor estimado: 120€ - 350€</span>
+                                            <p style={{ margin: '0.2rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Packs de 3 o 5 landings disponibles con descuento.</p>
+                                        </div>
                                     </div>
                                 }
                             />
                             <AdditionalServiceItem
-                                title="Web con tienda online (E-commerce)"
+                                icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>}
+                                title="Web con tiendas online (E-commerce)"
                                 content={
-                                    <>
-                                        <p style={{ marginBottom: '1rem' }}>Abre un nuevo canal de ventas disponible las 24 horas. Una tienda online segura, atractiva y fácil de gestionar para tu negocio.</p>
-                                        <ul style={{ listStyleType: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                                            <li><span style={{ color: 'var(--accent-color)' }}>✔</span> <strong>Configuración detallada</strong> de tienda online y pasarelas de pago.</li>
-                                            <li><span style={{ color: 'var(--accent-color)' }}>✔</span> <strong>Gestión simplificada</strong> de productos y opciones de envío.</li>
-                                            <li><span style={{ color: 'var(--accent-color)' }}>✔</span> <strong>Optimización móvil</strong> para un proceso de compra sin fricciones.</li>
-                                            <li><span style={{ color: 'var(--accent-color)' }}>✔</span> <strong>Formación básica</strong> para gestionar la tienda tú mismo.</li>
+                                    <div style={{ padding: '0.5rem 0' }}>
+                                        <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Abre un nuevo canal de ventas disponible 24/7.</p>
+                                        <ul style={{ listStyleType: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '1.5rem' }}>
+                                            <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Configuración detallada de tienda online y pasarelas de pago.</li>
+                                            <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Gestión simplificada de productos y opciones de envío.</li>
+                                            <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Optimización móvil para un proceso de compra sin fricciones.</li>
+                                            <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Formación básica para gestionar la tienda tú mismo.</li>
                                         </ul>
-                                        <p style={{ marginTop: '1.5rem', fontSize: '0.9rem' }}><em>Precio: Desde 1490€ - Tiempo estimado: 3 a 5 semanas</em></p>
-                                    </>
+                                        <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
+                                            <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Precio: Desde 1490€</span>
+                                            <p style={{ margin: '0.2rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Tiempo estimado: 3 a 5 semanas</p>
+                                        </div>
+                                    </div>
                                 }
                             />
                             <AdditionalServiceItem
-                                title="Mantenimiento básico (29€/mes)"
+                                icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>}
+                                title="Mantenimiento básico"
                                 content={
-                                    <>
-                                        <p style={{ marginBottom: '1rem' }}>Mantén tu web segura, actualizada y funcionando sin problemas. Incluye: actualizaciones, copias y soporte.</p>
-                                        <p style={{ fontSize: '0.9rem' }}><em>Nota: Cambios estructurales o rediseños importantes no están incluidos y se presupuestan aparte.</em></p>
-                                    </>
+                                    <div style={{ padding: '0.5rem 0' }}>
+                                        <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Mantén tu web segura, actualizada y funcionando. Incluye: actualizaciones, copias y soporte.</p>
+                                        <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
+                                            <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Precio: 29€ / mes</span>
+                                            <p style={{ margin: '0.2rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Nota: Cambios estructurales o rediseños importantes no incluidos (presupuestar aparte).</p>
+                                        </div>
+                                    </div>
                                 }
                             />
                             <AdditionalServiceItem
-                                title="SEO continuo (Desde 180€/mes)"
-                                content="Aparece cuando tus clientes te necesiten. Optimización orientada a destacar en Google, atraer visitas de valor y fomentar el crecimiento."
+                                icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>}
+                                title="SEO continuo"
+                                content={
+                                    <div style={{ padding: '0.5rem 0' }}>
+                                        <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Optimización orientada a destacar en Google y atraer visitas de valor.</p>
+                                        <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
+                                            <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Precio: Desde 180€ / mes</span>
+                                        </div>
+                                    </div>
+                                }
                             />
                             <AdditionalServiceItem
-                                title="Creación de blogs (90€ por artículo)"
-                                content="Artículos útiles y bien cuidados, pensados para educar a tu audiencia, captar visitas interesadas y posicionarte como referente."
+                                icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>}
+                                title="Creación de blogs"
+                                content={
+                                    <div style={{ padding: '0.5rem 0' }}>
+                                        <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Artículos pensados para educar a tu audiencia, captar tráfico y posicionarte.</p>
+                                        <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
+                                            <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Precio: 90€ por artículo</span>
+                                        </div>
+                                    </div>
+                                }
                             />
                         </div>
                     </div>
@@ -511,14 +518,24 @@ function MarqueeContent() {
     );
 }
 
-function AdditionalServiceItem({ title, content }) {
+function AdditionalServiceItem({ title, content, icon }) {
     const [isOpen, setIsOpen] = useState(false);
     return (
-        <div className="add-service-item" onClick={() => setIsOpen(!isOpen)}>
+        <div
+            className="add-service-item"
+            onClick={() => setIsOpen(!isOpen)}
+            role="button"
+            tabIndex={0}
+            aria-expanded={isOpen}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsOpen(!isOpen) } }}
+        >
             <div className="add-service-header">
-                <span>{title}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                    {icon && <div style={{ color: 'var(--accent-color)' }}>{icon}</div>}
+                    <span style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--text-primary)' }}>{title}</span>
+                </div>
                 <div className="add-service-icon" style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}>
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <svg width="24" height="24" fill="none" stroke="var(--accent-color)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
                 </div>
             </div>
             <div className={`add-service-content ${isOpen ? 'open' : ''}`}>
