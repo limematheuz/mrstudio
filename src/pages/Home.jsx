@@ -48,53 +48,69 @@ export default function Home() {
             <section className="section text-center" style={{ paddingTop: '15rem', paddingBottom: '10rem' }}>
                 <div className="container">
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.6 }}
+                        initial="hidden"
+                        animate="visible"
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: {
+                                opacity: 1,
+                                transition: { staggerChildren: 0.2 }
+                            }
+                        }}
                     >
-                        <span style={{
-                            display: 'inline-block',
-                            padding: '0.4rem 1rem',
-                            background: 'rgba(139,92,246,0.1)',
-                            color: 'var(--accent-color)',
-                            borderRadius: '100px',
-                            fontWeight: 600,
-                            fontSize: '0.9rem',
-                            marginBottom: '1.5rem'
-                        }}>
-                            Diseño Web Premium
-                        </span>
-                    </motion.div>
-                    <motion.h1
-                        className="hero-text mb-8"
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                    >
-                        Webs pensadas para que tus<br />
-                        visitantes se conviertan en <span style={{
-                            background: 'linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-color) 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                        }}>clientes</span>.
-                    </motion.h1>
-                    <motion.p
-                        className="mb-8"
-                        style={{ fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto', color: 'var(--text-secondary)' }}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1, delay: 0.4 }}
-                    >
-                        Sitios profesionales, rápidos y pensados para generar confianza. Diseño, hosting y dominio incluidos.
-                    </motion.p>
-                    <motion.div
-                        className="hero-buttons"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1, delay: 0.6 }}
-                    >
-                        <a href="#servicios" className="btn-primary">Ver mis servicios</a>
-                        <a href="#proyectos" className="btn-secondary">Ver proyectos</a>
+                        <motion.div
+                            variants={{
+                                hidden: { opacity: 0, scale: 0.9, y: 20 },
+                                visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+                            }}
+                        >
+                            <span style={{
+                                display: 'inline-block',
+                                padding: '0.4rem 1rem',
+                                background: 'rgba(139,92,246,0.1)',
+                                color: 'var(--accent-color)',
+                                borderRadius: '100px',
+                                fontWeight: 600,
+                                fontSize: '0.9rem',
+                                marginBottom: '1.5rem'
+                            }}>
+                                Diseño Web Premium
+                            </span>
+                        </motion.div>
+                        <motion.h1
+                            className="hero-text mb-8"
+                            variants={{
+                                hidden: { opacity: 0, y: 30 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                            }}
+                        >
+                            Diseño web que convierte<br />
+                            visitas en <span style={{
+                                background: 'linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-color) 100%)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                            }}>clientes</span>.
+                        </motion.h1>
+                        <motion.p
+                            className="mb-8"
+                            style={{ fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto', color: 'var(--text-secondary)' }}
+                            variants={{
+                                hidden: { opacity: 0, y: 20 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+                            }}
+                        >
+                            Sitios profesionales, rápidos y pensados para generar confianza. Diseño, hosting y dominio incluidos.
+                        </motion.p>
+                        <motion.div
+                            className="hero-buttons"
+                            variants={{
+                                hidden: { opacity: 0, y: 20 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+                            }}
+                        >
+                            <a href="#servicios" className="btn-primary">Ver mis servicios</a>
+                            <a href="#proyectos" className="btn-secondary">Ver proyectos</a>
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>
@@ -130,7 +146,7 @@ export default function Home() {
                         <ServiceCard
                             title="Web Standard"
                             pages="Hasta 3 Páginas"
-                            price="690€"
+                            price="697€"
                             desc="La opción más equilibrada. Una web estructurada para destacar tu valor, transmitir empatía y conectar de verdad con tus clientes."
                             includes={[
                                 "Todo lo del plan Minimalista",
@@ -144,14 +160,14 @@ export default function Home() {
                             ]}
                             link="/servicios/3-paginas"
                             featured
-                            badge="Más popular"
+                            badge="Recomendado"
                             ctaText="Ver más detalles"
                         />
 
                         <ServiceCard
                             title="Web Premium"
                             pages="Hasta 5 Páginas"
-                            price="990€"
+                            price="997€"
                             desc="La plataforma más completa. Una web exclusiva para marcas que buscan transmitir autoridad y destacar de forma profesional."
                             includes={[
                                 "Todo lo del plan Standard",
