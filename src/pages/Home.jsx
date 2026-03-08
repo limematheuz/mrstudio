@@ -1,6 +1,9 @@
 import { useState, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ContactForm from '../components/ContactForm';
@@ -12,15 +15,81 @@ export default function Home() {
 
     useGSAP(() => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         if (prefersReducedMotion) {
             gsap.set('.hero-anim-item', { opacity: 1, y: 0 });
+            gsap.set('.hero-typewriter .char', { opacity: 1, x: 0 });
             return;
         }
 
-        gsap.fromTo('.hero-anim-item',
+        const isMobile = window.matchMedia("(max-width: 480px)").matches;
+
+        // Typewriter timeline
+        const tl = gsap.timeline({ defaults: { ease: "power2.out" }, delay: 0.1 });
+
+        // Let the outer container fade in if desired, or just fade letters
+        gsap.set('.hero-typewriter', { opacity: 1 });
+
+        const chars = gsap.utils.toArray('.hero-typewriter .char');
+        tl.to(chars, {
+            duration: isMobile ? 0.05 : 0.08,
+            opacity: 1,
+            x: 0,
+            stagger: isMobile ? 0.02 : 0.03,
+            ease: "power2.out"
+        });
+
+        // Intro fade on other elements like buttons and text
+        tl.fromTo('.hero-anim-item',
             { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "power3.out", delay: 0.1 }
+            { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "power3.out" },
+            "-=0.5" // Start slightly before typing finishes
         );
+
+        // -------- SCROLL ANIMATIONS --------
+        ScrollTrigger.matchMedia({
+            // Desktop & Tablet
+            "(min-width: 769px)": function () {
+                gsap.utils.toArray('.animate-on-scroll').forEach(container => {
+                    const items = container.querySelectorAll('.animate-item');
+                    if (items.length > 0) {
+                        gsap.from(items, {
+                            y: 30,
+                            opacity: 0,
+                            stagger: 0.15,
+                            duration: 0.8,
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: container,
+                                start: "top 85%",
+                                toggleActions: "play none none none"
+                            }
+                        });
+                    }
+                });
+            },
+            // Mobile
+            "(max-width: 768px)": function () {
+                gsap.utils.toArray('.animate-on-scroll').forEach(container => {
+                    const items = container.querySelectorAll('.animate-item');
+                    if (items.length > 0) {
+                        gsap.from(items, {
+                            y: 15,
+                            opacity: 0,
+                            stagger: 0.1,
+                            duration: 0.6,
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: container,
+                                start: "top 90%",
+                                toggleActions: "play none none none"
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
     }, { scope: heroRef });
 
     const projects = [
@@ -78,13 +147,39 @@ export default function Home() {
                                 Diseño Web Premium
                             </span>
                         </div>
-                        <h1 className="hero-text mb-8 hero-anim-item" style={{ opacity: 0 }}>
-                            Creamos webs que ayudan a tu<br className="hide-mobile" />
-                            negocio a <span style={{
-                                background: 'linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-color) 100%)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                            }}>crecer</span>.
+                        {/* Accessible wrapper for screen readers */}
+                        <h1 className="hero-text mb-8">
+                            <span className="sr-only">Creamos webs que ayudan a tu negocio a crecer.</span>
+                            {/* Visual Typewriter */}
+                            <span className="hero-typewriter" aria-hidden="true" style={{ opacity: 0, display: 'inline-block' }}>
+                                {"Creamos webs que ayudan a tu".split('').map((char, index) => (
+                                    <span key={`l1-${index}`} className="char" style={{ opacity: 0, transform: 'translateX(-5px)', display: 'inline-block', whiteSpace: 'pre' }}>
+                                        {char === ' ' ? ' ' : char}
+                                    </span>
+                                ))}
+                                <br className="hide-mobile" />
+                                {"negocio a ".split('').map((char, index) => (
+                                    <span key={`l2-${index}`} className="char" style={{ opacity: 0, transform: 'translateX(-5px)', display: 'inline-block', whiteSpace: 'pre' }}>
+                                        {char === ' ' ? ' ' : char}
+                                    </span>
+                                ))}
+                                {/* Gradient "crecer" */}
+                                <span style={{
+                                    background: 'linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-color) 100%)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                }}>
+                                    {"crecer".split('').map((char, index) => (
+                                        <span key={`l3-${index}`} className="char" style={{ opacity: 0, transform: 'translateX(-5px)', display: 'inline-block', whiteSpace: 'pre' }}>
+                                            {char === ' ' ? ' ' : char}
+                                        </span>
+                                    ))}
+                                </span>
+                                <span className="char" style={{ opacity: 0, transform: 'translateX(-5px)', display: 'inline-block' }}>.</span>
+
+                                {/* CSS Caret */}
+                                <span className="typewriter-caret"></span>
+                            </span>
                         </h1>
                         <p className="mb-8 hero-anim-item" style={{ fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto', color: 'var(--text-secondary)', opacity: 0 }}>
                             Sitios profesionales, rápidos y pensados para generar confianza. Diseño, hosting y dominio incluidos.
@@ -100,85 +195,91 @@ export default function Home() {
             {/* Services Section */}
             <section id="servicios" className="section">
                 <div className="container">
-                    <div className="text-center mb-8">
-                        <h2 className="section-title">Planes de Diseño Web</h2>
-                        <p className="section-subtitle">Opciones diseñadas para ayudar a tu negocio a crecer en internet.</p>
+                    <div className="text-center mb-8 animate-on-scroll">
+                        <h2 className="section-title animate-item">Planes de Diseño Web</h2>
+                        <p className="section-subtitle animate-item">Opciones diseñadas para ayudar a tu negocio a crecer en internet.</p>
                     </div>
 
-                    <div className="services-container">
+                    <div className="services-container animate-on-scroll">
 
-                        <ServiceCard
-                            title="Web Minimalista"
-                            pages="1 Página"
-                            price="497€"
-                            desc="El punto de partida ideal. Una presencia online clara y profesional, perfecta para negocios que buscan darse a conocer con confianza."
-                            includes={[
-                                "Diseño profesional y atractivo",
-                                "Adaptación perfecta a móviles",
-                                "Formulario de contacto integrado",
-                                "Optimización básica",
-                                "Seguridad básica",
-                                "Hosting incluido",
-                                "Dominio incluido el primer año"
-                            ]}
-                            link="/servicios/1-pagina"
-                            ctaText="Ver más detalles"
-                        />
+                        <div className="animate-item" style={{ display: 'flex' }}>
+                            <ServiceCard
+                                title="Web Minimalista"
+                                pages="1 Página"
+                                price="497€"
+                                desc="El punto de partida ideal. Una presencia online clara y profesional, perfecta para negocios que buscan darse a conocer con confianza."
+                                includes={[
+                                    "Diseño profesional y atractivo",
+                                    "Adaptación perfecta a móviles",
+                                    "Formulario de contacto integrado",
+                                    "Optimización básica",
+                                    "Seguridad básica",
+                                    "Hosting incluido",
+                                    "Dominio incluido el primer año"
+                                ]}
+                                link="/servicios/1-pagina"
+                                ctaText="Ver más detalles"
+                            />
+                        </div>
 
-                        <ServiceCard
-                            title="Web Standard"
-                            pages="Hasta 3 Páginas"
-                            price="697€"
-                            desc="La opción más equilibrada. Una web estructurada para destacar tu valor, transmitir empatía y conectar de verdad con tus clientes."
-                            includes={[
-                                "Todo lo del plan Minimalista",
-                                "Hasta 3 páginas",
-                                "Navegación pensada para guiar al usuario",
-                                "Optimización de velocidad",
-                                "Diseño personalizado",
-                                "Formularios de contacto personalizados",
-                                "Hosting incluido",
-                                "Dominio incluido el primer año"
-                            ]}
-                            link="/servicios/3-paginas"
-                            featured
-                            badge="Recomendado"
-                            ctaText="Ver más detalles"
-                        />
+                        <div className="animate-item" style={{ display: 'flex' }}>
+                            <ServiceCard
+                                title="Web Standard"
+                                pages="Hasta 3 Páginas"
+                                price="697€"
+                                desc="La opción más equilibrada. Una web estructurada para destacar tu valor, transmitir empatía y conectar de verdad con tus clientes."
+                                includes={[
+                                    "Todo lo del plan Minimalista",
+                                    "Hasta 3 páginas",
+                                    "Navegación pensada para guiar al usuario",
+                                    "Optimización de velocidad",
+                                    "Diseño personalizado",
+                                    "Formularios de contacto personalizados",
+                                    "Hosting incluido",
+                                    "Dominio incluido el primer año"
+                                ]}
+                                link="/servicios/3-paginas"
+                                featured
+                                badge="Recomendado"
+                                ctaText="Ver más detalles"
+                            />
+                        </div>
 
-                        <ServiceCard
-                            title="Web Premium"
-                            pages="Hasta 5 Páginas"
-                            price="997€"
-                            desc="La plataforma más completa. Una web exclusiva para marcas que buscan transmitir autoridad y destacar de forma profesional."
-                            includes={[
-                                "Todo lo del plan Standard",
-                                "Hasta 5 páginas",
-                                "Diseño avanzado personalizado",
-                                "Sección de proyectos a medida",
-                                "Animaciones modernas",
-                                "Optimización avanzada"
-                            ]}
-                            link="/servicios/5-paginas"
-                            ctaText="Ver más detalles"
-                        />
+                        <div className="animate-item" style={{ display: 'flex' }}>
+                            <ServiceCard
+                                title="Web Premium"
+                                pages="Hasta 5 Páginas"
+                                price="997€"
+                                desc="La plataforma más completa. Una web exclusiva para marcas que buscan transmitir autoridad y destacar de forma profesional."
+                                includes={[
+                                    "Todo lo del plan Standard",
+                                    "Hasta 5 páginas",
+                                    "Diseño avanzado personalizado",
+                                    "Sección de proyectos a medida",
+                                    "Animaciones modernas",
+                                    "Optimización avanzada"
+                                ]}
+                                link="/servicios/5-paginas"
+                                ctaText="Ver más detalles"
+                            />
+                        </div>
                     </div>
 
                     {/* Trust Badges */}
-                    <div className="trust-badges">
-                        <div className="trust-badge">
+                    <div className="trust-badges animate-on-scroll">
+                        <div className="trust-badge animate-item">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                             <span>Diseño Premium</span>
                         </div>
-                        <div className="trust-badge">
+                        <div className="trust-badge animate-item">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                             <span>Seguridad y Confianza</span>
                         </div>
-                        <div className="trust-badge">
+                        <div className="trust-badge animate-item">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                             <span>Navegación Fluida</span>
                         </div>
-                        <div className="trust-badge">
+                        <div className="trust-badge animate-item">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                             <span>Soporte Cercano</span>
                         </div>
@@ -186,85 +287,95 @@ export default function Home() {
 
                     {/* Aditional Services */}
                     <div style={{ marginTop: '5rem' }}>
-                        <div className="text-center mb-4">
-                            <h3 className="section-title" style={{ fontSize: '2rem' }}>Escala tu proyecto</h3>
-                            <p className="section-subtitle">Soluciones diseñadas para seguir sumando valor y crecimiento a tu negocio.</p>
+                        <div className="text-center mb-4 animate-on-scroll">
+                            <h3 className="section-title animate-item" style={{ fontSize: '2rem' }}>Escala tu proyecto</h3>
+                            <p className="section-subtitle animate-item">Soluciones diseñadas para seguir sumando valor y crecimiento a tu negocio.</p>
                         </div>
-                        <div className="add-service-grid">
-                            <AdditionalServiceItem
-                                icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>}
-                                title="Landing Pages promocionales"
-                                content={
-                                    <div style={{ padding: '0.5rem 0' }}>
-                                        <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Páginas específicas y atractivas para tus campañas (San Valentín, Black Friday...).</p>
-                                        <ul style={{ listStyleType: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '1.5rem' }}>
-                                            <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Rápida publicación (1 a 5 días)</li>
-                                            <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Optimizada para conversiones</li>
-                                            <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Adaptable a tu branding</li>
-                                        </ul>
-                                        <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
-                                            <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Valor estimado: 120€ - 350€</span>
-                                            <p style={{ margin: '0.2rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Packs de 3 o 5 landings disponibles con descuento.</p>
+                        <div className="add-service-grid animate-on-scroll">
+                            <div className="animate-item">
+                                <AdditionalServiceItem
+                                    icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 0 0 0 2 2h12a2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>}
+                                    title="Landing Pages promocionales"
+                                    content={
+                                        <div style={{ padding: '0.5rem 0' }}>
+                                            <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Páginas específicas y atractivas para tus campañas (San Valentín, Black Friday...).</p>
+                                            <ul style={{ listStyleType: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '1.5rem' }}>
+                                                <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Rápida publicación (1 a 5 días)</li>
+                                                <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Optimizada para conversiones</li>
+                                                <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Adaptable a tu branding</li>
+                                            </ul>
+                                            <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
+                                                <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Valor estimado: 120€ - 350€</span>
+                                                <p style={{ margin: '0.2rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Packs de 3 o 5 landings disponibles con descuento.</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                }
-                            />
-                            <AdditionalServiceItem
-                                icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>}
-                                title="Web con tiendas online (E-commerce)"
-                                content={
-                                    <div style={{ padding: '0.5rem 0' }}>
-                                        <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Abre un nuevo canal de ventas disponible 24/7.</p>
-                                        <ul style={{ listStyleType: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '1.5rem' }}>
-                                            <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Configuración detallada de tienda online y pasarelas de pago.</li>
-                                            <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Gestión simplificada de productos y opciones de envío.</li>
-                                            <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Optimización móvil para un proceso de compra sin fricciones.</li>
-                                            <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Formación básica para gestionar la tienda tú mismo.</li>
-                                        </ul>
-                                        <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
-                                            <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Precio: Desde 1490€</span>
-                                            <p style={{ margin: '0.2rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Tiempo estimado: 3 a 5 semanas</p>
+                                    }
+                                />
+                            </div>
+                            <div className="animate-item">
+                                <AdditionalServiceItem
+                                    icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 0 0 0 2 1.61h9.72a2 0 0 0 2-1.61L23 6H6"></path></svg>}
+                                    title="Web con tiendas online (E-commerce)"
+                                    content={
+                                        <div style={{ padding: '0.5rem 0' }}>
+                                            <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Abre un nuevo canal de ventas disponible 24/7.</p>
+                                            <ul style={{ listStyleType: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '1.5rem' }}>
+                                                <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Configuración detallada de tienda online y pasarelas de pago.</li>
+                                                <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Gestión simplificada de productos y opciones de envío.</li>
+                                                <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Optimización móvil para un proceso de compra sin fricciones.</li>
+                                                <li style={{ display: 'flex', gap: '0.5rem' }}><span style={{ color: 'var(--accent-color)' }}>✔</span> Formación básica para gestionar la tienda tú mismo.</li>
+                                            </ul>
+                                            <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
+                                                <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Precio: Desde 1490€</span>
+                                                <p style={{ margin: '0.2rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Tiempo estimado: 3 a 5 semanas</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                }
-                            />
-                            <AdditionalServiceItem
-                                icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>}
-                                title="Mantenimiento básico"
-                                content={
-                                    <div style={{ padding: '0.5rem 0' }}>
-                                        <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Mantén tu web segura, actualizada y funcionando. Incluye: actualizaciones, copias y soporte.</p>
-                                        <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
-                                            <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Precio: 29€ / mes</span>
-                                            <p style={{ margin: '0.2rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Nota: Cambios estructurales o rediseños importantes no incluidos (presupuestar aparte).</p>
+                                    }
+                                />
+                            </div>
+                            <div className="animate-item">
+                                <AdditionalServiceItem
+                                    icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>}
+                                    title="Mantenimiento básico"
+                                    content={
+                                        <div style={{ padding: '0.5rem 0' }}>
+                                            <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Mantén tu web segura, actualizada y funcionando. Incluye: actualizaciones, copias y soporte.</p>
+                                            <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
+                                                <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Precio: 29€ / mes</span>
+                                                <p style={{ margin: '0.2rem 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Nota: Cambios estructurales o rediseños importantes no incluidos (presupuestar aparte).</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                }
-                            />
-                            <AdditionalServiceItem
-                                icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>}
-                                title="SEO continuo"
-                                content={
-                                    <div style={{ padding: '0.5rem 0' }}>
-                                        <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Optimización orientada a destacar en Google y atraer visitas de valor.</p>
-                                        <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
-                                            <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Precio: Desde 180€ / mes</span>
+                                    }
+                                />
+                            </div>
+                            <div className="animate-item">
+                                <AdditionalServiceItem
+                                    icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>}
+                                    title="SEO continuo"
+                                    content={
+                                        <div style={{ padding: '0.5rem 0' }}>
+                                            <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Optimización orientada a destacar en Google y atraer visitas de valor.</p>
+                                            <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
+                                                <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Precio: Desde 180€ / mes</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                }
-                            />
-                            <AdditionalServiceItem
-                                icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>}
-                                title="Creación de blogs"
-                                content={
-                                    <div style={{ padding: '0.5rem 0' }}>
-                                        <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Artículos pensados para educar a tu audiencia, captar tráfico y posicionarte.</p>
-                                        <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
-                                            <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Precio: 90€ por artículo</span>
+                                    }
+                                />
+                            </div>
+                            <div className="animate-item">
+                                <AdditionalServiceItem
+                                    icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 0 0 0-2 2v14a2 0 0 0 2 2h14a2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>}
+                                    title="Creación de blogs"
+                                    content={
+                                        <div style={{ padding: '0.5rem 0' }}>
+                                            <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Artículos pensados para educar a tu audiencia, captar tráfico y posicionarte.</p>
+                                            <div style={{ background: 'rgba(139, 92, 246, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-color)' }}>
+                                                <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Precio: 90€ por artículo</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                }
-                            />
+                                    }
+                                />
+                            </div>
                         </div>
                     </div>
 
@@ -276,21 +387,22 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* About Me / Projects (Home) */}
-            <section id="proyectos" className="section" style={{ borderTop: '1px solid rgba(0,0,0,0.05)', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
+            {/* Projects Section */}
+            <section id="proyectos" className="section bg-secondary">
                 <div className="container">
-                    <div className="text-center mb-8">
-                        <h2 className="section-title">Casos de éxito</h2>
-                        <p className="section-subtitle">Negocios que ya han dado el paso digital y están mejorando sus resultados.</p>
+                    <div className="text-center mb-8 animate-on-scroll">
+                        <h2 className="section-title animate-item">Casos de Éxito</h2>
+                        <p className="section-subtitle animate-item">Plataformas digitales diseñadas para convertir.</p>
                     </div>
 
-                    <div className="projects-grid">
-                        {projects.map((proj, idx) => (
-                            <ProjectGridCard
-                                key={idx}
-                                project={proj}
-                                onClick={() => setSelectedProject(proj)}
-                            />
+                    <div className="project-grid animate-on-scroll">
+                        {projects.map((proj, i) => (
+                            <div className="animate-item" key={i}>
+                                <ProjectGridCard
+                                    project={proj}
+                                    onClick={() => setSelectedProject(proj)}
+                                />
+                            </div>
                         ))}
                     </div>
 
@@ -342,25 +454,53 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Features (Why choose us) Section */}
+            <section className="section bg-gradient-brand text-white">
+                <div className="container">
+                    <div className="text-center mb-8 animate-on-scroll">
+                        <h2 className="section-title animate-item" style={{ color: 'white' }}>Más que diseño: resultados</h2>
+                        <p className="section-subtitle animate-item" style={{ color: 'rgba(255,255,255,0.8)' }}>
+                            No hacemos webs como "tarjetas de presentación", creamos herramientas digitales
+                            enfocadas en hacer crecer tu negocio.
+                        </p>
+                    </div>
+
+                    <div className="services-container animate-on-scroll" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+                        <div className="white-card animate-item">
+                            <h3 style={{ color: 'var(--text-primary)', marginBottom: '0.5rem' }}>Estrategia centrada en conversión</h3>
+                            <p style={{ color: 'var(--text-secondary)' }}>Guiamos a tus visitantes paso a paso hacia la acción (contacto, compra). Menos rebote, más clientes.</p>
+                        </div>
+                        <div className="white-card animate-item">
+                            <h3 style={{ color: 'var(--text-primary)', marginBottom: '0.5rem' }}>Velocidad espectacular</h3>
+                            <p style={{ color: 'var(--text-secondary)' }}>Los usuarios odian esperar. Construimos sitios ultrarrápidos que benefician tanto tus ventas como el SEO.</p>
+                        </div>
+                        <div className="white-card animate-item">
+                            <h3 style={{ color: 'var(--text-primary)', marginBottom: '0.5rem' }}>Diseño 100% Mobile-First</h3>
+                            <p style={{ color: 'var(--text-secondary)' }}>El 80% del tráfico es móvil. Tu web se verá y funcionará de manera impecable en cualquier dispositivo.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Testimonials */}
             <section className="section">
                 <div className="container">
-                    <div className="text-center mb-8">
-                        <h2 className="section-title">Lo que dicen quienes confían en mí</h2>
-                        <p className="section-subtitle">Experiencias reales trabajando juntos en sus proyectos.</p>
+                    <div className="text-center mb-8 animate-on-scroll">
+                        <h2 className="section-title animate-item">Lo que dicen quienes confían en mí</h2>
+                        <p className="section-subtitle animate-item">Experiencias reales trabajando juntos en sus proyectos.</p>
                     </div>
-                    <div className="testimonial-grid">
-                        <div className="testimonial-card">
+                    <div className="testimonial-grid animate-on-scroll">
+                        <div className="testimonial-card animate-item">
                             <div style={{ display: 'flex', color: '#fbbf24', marginBottom: '1rem' }}>★★★★★</div>
                             <p style={{ fontStyle: 'italic', marginBottom: '1rem' }}>"Desde que renovamos la web, la cantidad de clientes que nos contactan ha subido significativamente. El diseño es exactamente lo que queríamos, muy profesional."</p>
                             <h4 style={{ fontWeight: 600 }}>Director - Elha Epilation</h4>
                         </div>
-                        <div className="testimonial-card">
+                        <div className="testimonial-card animate-item">
                             <div style={{ display: 'flex', color: '#fbbf24', marginBottom: '1rem' }}>★★★★★</div>
                             <p style={{ fontStyle: 'italic', marginBottom: '1rem' }}>"Trabajar con Matheus fue un acierto. Entendió nuestra visión para la empresa de remodelación al instante y nos entregó una web que da mucha confianza."</p>
                             <h4 style={{ fontWeight: 600 }}>Gerente - RRJ Remodeling</h4>
                         </div>
-                        <div className="testimonial-card">
+                        <div className="testimonial-card animate-item">
                             <div style={{ display: 'flex', color: '#fbbf24', marginBottom: '1rem' }}>★★★★★</div>
                             <p style={{ fontStyle: 'italic', marginBottom: '1rem' }}>"La web es limpia, rápida y muy intuitiva. Exactamente el reflejo tecnológico que queríamos dar a nuestra empresa IT."</p>
                             <h4 style={{ fontWeight: 600 }}>CEO - Innovatic</h4>
@@ -463,16 +603,12 @@ function ServiceCard({ title, pages, desc, link, featured, badge, price, include
 
 function ProjectGridCard({ project, onClick }) {
     return (
-        <motion.div
+        <div
             className="project-grid-card"
             onClick={onClick}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -5 }}
         >
             <div className="project-grid-img" style={{ height: '350px' }}>
-                <img src={project.img} alt={project.title} />
+                <img src={project.img} alt={project.title} loading="lazy" />
 
                 {/* Default Bottom Bar */}
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem', background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }}>
@@ -493,7 +629,7 @@ function ProjectGridCard({ project, onClick }) {
                     </span>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 }
 
