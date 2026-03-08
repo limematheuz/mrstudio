@@ -37,7 +37,6 @@ export default function Home() {
             tl.to(chars, {
                 duration: isMobile ? 0.05 : 0.08,
                 opacity: 1,
-                x: 0,
                 stagger: isMobile ? 0.015 : 0.03, // Speed up on mobile
                 ease: "power2.out"
             });
@@ -104,30 +103,30 @@ export default function Home() {
                             <span className="sr-only">Creamos webs que ayudan a tu negocio a crecer.</span>
 
                             {/* Visual Typewriter (hidden from screen readers) */}
-                            <span className="hero-typewriter" aria-hidden="true" style={{ opacity: 0, display: 'inline-block' }}>
+                            <span className="hero-typewriter" aria-hidden="true" style={{
+                                opacity: 0,
+                                display: 'inline-block',
+                                background: 'linear-gradient(90deg, var(--text-primary) 0%, var(--text-primary) 40%, var(--accent-color) 100%)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent'
+                            }}>
                                 {"Creamos webs que ayudan a tu".split('').map((char, index) => (
-                                    <span key={`l1-${index}`} className="char" style={{ opacity: 0, transform: 'translateX(-5px)', display: 'inline-block', whiteSpace: 'pre' }}>
+                                    <span key={`l1-${index}`} className="char" style={{ opacity: 0, display: 'inline-block', whiteSpace: 'pre' }}>
                                         {char === ' ' ? ' ' : char}
                                     </span>
                                 ))}
                                 <br className="hide-mobile" />
                                 {"negocio a ".split('').map((char, index) => (
-                                    <span key={`l2-${index}`} className="char" style={{ opacity: 0, transform: 'translateX(-5px)', display: 'inline-block', whiteSpace: 'pre' }}>
+                                    <span key={`l2-${index}`} className="char" style={{ opacity: 0, display: 'inline-block', whiteSpace: 'pre' }}>
                                         {char === ' ' ? ' ' : char}
                                     </span>
                                 ))}
-                                <span style={{
-                                    background: 'linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-color) 100%)',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent',
-                                }}>
-                                    {"crecer".split('').map((char, index) => (
-                                        <span key={`l3-${index}`} className="char" style={{ opacity: 0, transform: 'translateX(-5px)', display: 'inline-block', whiteSpace: 'pre' }}>
-                                            {char === ' ' ? ' ' : char}
-                                        </span>
-                                    ))}
-                                </span>
-                                <span className="char" style={{ opacity: 0, transform: 'translateX(-5px)', display: 'inline-block' }}>.</span>
+                                {"crecer".split('').map((char, index) => (
+                                    <span key={`l3-${index}`} className="char" style={{ opacity: 0, display: 'inline-block', whiteSpace: 'pre' }}>
+                                        {char === ' ' ? ' ' : char}
+                                    </span>
+                                ))}
+                                <span className="char" style={{ opacity: 0, display: 'inline-block' }}>.</span>
 
                                 {/* CSS Caret */}
                                 <span className="typewriter-caret"></span>
