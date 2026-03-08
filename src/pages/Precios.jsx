@@ -20,7 +20,7 @@ export default function Precios() {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="section-subtitle"
                     >
-                        Transparencia total. Elige el plan que mejor se adapte al momento actual de tu negocio.
+                        Transparencia total. Elige la opción que mejor encaje con el momento actual de tu negocio.
                     </motion.p>
                 </div>
 
@@ -30,7 +30,7 @@ export default function Precios() {
                         title="Web Minimalista"
                         price="497€"
                         pages="1 Página"
-                        desc="Para validar ideas o presencia rápida."
+                        desc="Ideal para validar ideas o tener tu primera web."
                         features={[
                             "Diseño profesional y persuasivo",
                             "Adaptación móvil perfecta",
@@ -47,11 +47,11 @@ export default function Precios() {
                         title="Web Standard"
                         price="697€"
                         pages="Hasta 3 Páginas"
-                        desc="Para captar clientes y transmitir confianza."
+                        desc="Perfecta para conectar con tus clientes y generar confianza."
                         features={[
                             "Todo lo del plan Minimalista",
                             "Hasta 3 páginas organizadas",
-                            "Arquitectura de neuromarketing",
+                            "Navegación guiada para conectar",
                             "CTAs estratégicos",
                             "Velocidad de carga superior",
                             "Diseño personalizado",
@@ -60,14 +60,14 @@ export default function Precios() {
                         ]}
                         link="/servicios/3-paginas"
                         featured
-                        badge="La decisión inteligente"
+                        badge="La opción más equilibrada"
                     />
 
                     <PricingCard
                         title="Web Premium"
                         price="997€"
                         pages="Hasta 5 Páginas"
-                        desc="Para marcas que dominan su mercado."
+                        desc="Para marcas que lideran su sector y proyectan autoridad."
                         features={[
                             "Todo lo del plan Standard",
                             "Hasta 5 páginas premium",
@@ -93,7 +93,7 @@ export default function Precios() {
                         <ExtraServiceCard
                             title="Web con Tienda Online"
                             price="Desde 1490€"
-                            desc="Vende tus productos 24/7 con una plataforma e-commerce autogestionable y escalable."
+                            desc="Vende sin interrupciones con una plataforma e-commerce fácil de gestionar."
                         />
                         <ExtraServiceCard
                             title="Landing pages promocionales"
@@ -103,12 +103,12 @@ export default function Precios() {
                         <ExtraServiceCard
                             title="SEO Continuo"
                             price="Desde 180€/mes"
-                            desc="Posicionamiento en Google. Atrae clientes cualificados mes a mes dominando las búsquedas de tu sector."
+                            desc="Posicionamiento en Google. Atrae clientes mes a mes destacando en las búsquedas de tu sector."
                         />
                         <ExtraServiceCard
                             title="Mantenimiento Básico"
                             price="29€/mes"
-                            desc="Actualizaciones, copias de seguridad diarias, seguridad avanzada y soporte continuado."
+                            desc="Actualizaciones, copias de seguridad diarias, seguridad y soporte cercano."
                         />
                     </div>
                 </div>

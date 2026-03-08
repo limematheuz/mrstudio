@@ -37,12 +37,12 @@ export default function AboutMe() {
                             transition={{ duration: 0.8, delay: 0.2 }}
                         >
                             <h1 style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '2rem', letterSpacing: '-0.03em', lineHeight: 1.1, color: 'var(--text-primary)' }}>
-                                Diseño webs pensadas para <span style={{ color: 'var(--accent-color)' }}>convertir visitas en clientes.</span>
+                                Diseño webs pensadas para que tus <span style={{ color: 'var(--accent-color)' }}>visitantes se conviertan en clientes.</span>
                             </h1>
 
                             <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', lineHeight: 1.7 }}>
                                 <strong>Soy Matheus, creador de MRStudio.</strong><br /><br />
-                                Trabajo con profesionales y pequeñas empresas que necesitan algo más que “una web bonita”: necesitan una web que genere confianza, atraiga clientes y represente su negocio de forma profesional.
+                                Trabajo con profesionales y negocios que buscan más que una web bonita: necesitan un lugar digital que genere confianza, facilite el contacto y les represente de verdad.
                             </p>
 
                             <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', marginBottom: '2.5rem', lineHeight: 1.7 }}>
@@ -51,7 +51,7 @@ export default function AboutMe() {
 
                             <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--text-primary)' }}>Mi enfoque</h3>
                             <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', lineHeight: 1.7 }}>
-                                No me limito a construir páginas web.<br />Analizo el negocio, entiendo al cliente ideal y diseño una estructura clara que guíe al visitante hacia una acción: contactar, reservar o solicitar información.
+                                Mi enfoque va más allá del diseño visual.<br />Diseño una estructura clara, entendiendo tu negocio y guiando amablemente a los visitantes hacia el contacto o la reserva.
                             </p>
 
                             <ul style={{ listStyle: 'none', padding: 0, marginBottom: '3rem', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
@@ -62,13 +62,13 @@ export default function AboutMe() {
                                     <span style={{ color: 'var(--accent-color)', fontWeight: 'bold' }}>•</span> Explicar claramente los servicios del negocio
                                 </li>
                                 <li style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                                    <span style={{ color: 'var(--accent-color)', fontWeight: 'bold' }}>•</span> Convertir visitas en oportunidades reales
+                                    <span style={{ color: 'var(--accent-color)', fontWeight: 'bold' }}>•</span> Facilitar que tus visitas se conviertan en oportunidades reales
                                 </li>
                             </ul>
 
                             <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--text-primary)' }}>Cómo trabajo</h3>
                             <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', lineHeight: 1.7 }}>
-                                Mantengo los proyectos simples, rápidos y efectivos.<br />Mis clientes valoran especialmente:
+                                Mantengo los procesos sencillos, ágiles y efectivos.<br />Quienes confían en mí valoran especialmente:
                             </p>
 
                             <ul style={{ listStyle: 'none', padding: 0, marginBottom: '3rem', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>

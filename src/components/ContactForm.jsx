@@ -57,8 +57,8 @@ export default function ContactForm({ defaultService = '' }) {
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                         </div>
                         <div>
-                            <h4 style={{ fontWeight: 600, fontSize: '1.1rem', marginBottom: '0.3rem', color: 'var(--text-primary)' }}>Ejecución Rápida</h4>
-                            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Empezamos a trabajar de inmediato con flujos ágiles para entregar tu proyecto web sin semanas de esperas.</p>
+                            <h4 style={{ fontWeight: 600, fontSize: '1.1rem', marginBottom: '0.3rem', color: 'var(--text-primary)' }}>Desarrollo Ágil</h4>
+                            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Nos organizamos para que tu proyecto avance de forma fluida y sin complicaciones.</p>
                         </div>
                     </div>
                 </div>
@@ -86,11 +86,11 @@ export default function ContactForm({ defaultService = '' }) {
                             </p>
                             <p style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '0.95rem', color: 'var(--text-secondary)', marginBottom: '0.8rem' }}>
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                                Proceso directo sin esperas
+                                Proceso sencillo y paso a paso
                             </p>
                             <p style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                                Tu web trabajando por ti
+                                Orientación en cada etapa
                             </p>
                         </div>
                         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.8rem' }}>
@@ -127,7 +127,7 @@ export default function ContactForm({ defaultService = '' }) {
                             </div>
 
                             <button type="submit" className="btn-primary" disabled={status === 'sending'} style={{ marginTop: '1.5rem', width: '100%', padding: '1.2rem', fontSize: '1.1rem' }}>
-                                {status === 'sending' ? 'Enviando...' : 'Solicitar mi web'}
+                                {status === 'sending' ? 'Enviando...' : 'Pedir presupuesto'}
                             </button>
 
                             <p style={{ textAlign: 'center', fontSize: '0.85rem', color: '#888', marginTop: '0.5rem' }}>

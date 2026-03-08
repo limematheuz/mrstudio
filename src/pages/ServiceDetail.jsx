@@ -39,21 +39,21 @@ function getSemanticIcon(text, isFeatured = false) {
 const servicesData = {
     '1-pagina': {
         title: 'Web Minimalista (1 Página)',
-        desc: 'El punto de partida ideal. Una presencia online directa y profesional, perfecta para profesionales o pequeños negocios que necesitan validarse en internet de manera rápida, efectiva y sin gastos superfluos.',
+        desc: 'El punto de partida ideal. Una presencia online clara y profesional, perfecta para negocios que buscan darse a conocer con confianza.',
         features: [
-            'Diseño web profesional, estratégico y orientado a acción',
-            'Adaptación impecable en dispositivos móviles',
-            'Formulario directo de captación de clientes',
-            'Optimización técnica básica y certificados de seguridad',
+            'Diseño profesional y atractivo',
+            'Adaptación perfecta a móviles',
+            'Formulario de contacto integrado',
+            'Optimización básica y seguridad incluida',
             'Hosting premium y dominio primer año incluidos'
         ]
     },
     '3-paginas': {
         title: 'Web Standard (Hasta 3 Páginas)',
-        desc: 'La decisión inteligente. Arquitectura persuasiva en tres páginas (Inicio, Servicios, Contacto), diseñada para transmitir confianza y convertir visitantes en clientes.',
+        desc: 'La opción más equilibrada. Una web estructurada en tres páginas para destacar tu valor, transmitir empatía y conectar de verdad con tus clientes.',
         features: [
             'Inclusión íntegra del valor Minimalista',
-            'Hasta 3 páginas con estructura optimizada para conversión',
+            'Hasta 3 páginas con navegación pensada para guiar al usuario',
             'CTAs estratégicos',
             'Velocidad de carga optimizada',
             'Diseño personalizado y coherente con la marca'
@@ -61,23 +61,23 @@ const servicesData = {
     },
     '5-paginas': {
         title: 'Web Premium (Hasta 5 Páginas)',
-        desc: 'El nivel corporativo definitivo. Experiencia inmersiva para marcas que deben mostrar volumen de servicios y máxima autoridad.',
+        desc: 'La plataforma más completa. Una web exclusiva para marcas que buscan transmitir autoridad y destacar de forma profesional.',
         features: [
             'Todo lo del plan Standard',
             'Hasta 5 páginas con acabado premium',
             'Estética interactiva y animaciones modernas',
-            'Portfolio o secciones a medida',
+            'Sección de proyectos a medida',
             'Máximo rendimiento técnico garantizado'
         ]
     },
     'tienda-online': {
         title: 'Tienda Online (E-commerce)',
-        desc: 'Multiplica tus ingresos construyendo una máquina de ventas 24/7. Una tienda online segura, atractiva y de fácil gestión para operar tu negocio digital. El tiempo estimado es de 3 a 5 semanas.',
+        desc: 'Abre un nuevo canal de ventas disponible las 24 horas. Una tienda online segura, atractiva y fácil de gestionar para tu negocio.',
         features: [
-            'Configuración profunda de tu infraestructura E-commerce',
+            'Configuración detallada de tienda online y pasarelas de pago',
             'Integración funcional de pasarelas de pago (Stripe, PayPal, etc)',
             'Alta de productos y estructura de variantes comerciales',
-            'Sistematización de logística y costos de envíos',
+            'Gestión simplificada de productos y opciones de envío',
             'Entrenamiento inicial sobre la gestión autoadministrable de la tienda'
         ]
     }

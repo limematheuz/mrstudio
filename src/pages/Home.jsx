@@ -10,19 +10,19 @@ export default function Home() {
     const projects = [
         {
             title: "RRJ Remodeling",
-            desc: "Una presencia confiable y sólida para una empresa de remodelación. Arquitectura de la información pensada para captar clientes desde el primer segundo.",
+            desc: "Una presencia digital que genera confianza. Estructura pensada para que los usuarios encuentren lo que buscan fácilmente.",
             img: "/images/rrj_mockup.avif",
             link: "https://rrjremodeling.com/"
         },
         {
             title: "Pedro's Remodeling NC",
-            desc: "Digitalización en Carolina del Norte. Generando tracción local combinando diseño minimalista, formularios de alto impacto y resultados palpables.",
+            desc: "Digitalización local que facilita el contacto. Diseño minimalista y formularios claros para conectar con clientes.",
             img: "/images/pedros_mockup.avif",
             link: "https://pedrosremodelingnc.com/"
         },
         {
             title: "Elha Epilation Láser",
-            desc: "Expansión internacional. Portales refinados orientados al sector de belleza, guiando la atención hacia la reserva de citas y maximizando la conversión.",
+            desc: "Portales refinados para el sector de belleza, diseñados para hacer que la reserva de citas sea un proceso sencillo y fluido.",
             img: "https://images.unsplash.com/photo-1560750588-73207b1ef5b8?auto=format&fit=crop&q=80&w=1200",
             link: "https://elhaepilationlaser.fr/"
         },
@@ -71,8 +71,8 @@ export default function Home() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                     >
-                        Webs diseñadas para<br />
-                        convertir visitantes en <span style={{
+                        Webs pensadas para que tus<br />
+                        visitantes se conviertan en <span style={{
                             background: 'linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-color) 100%)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
@@ -85,7 +85,7 @@ export default function Home() {
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1, delay: 0.4 }}
                     >
-                        Sitios web profesionales, rápidos y diseñados estratégicamente para vender. Diseño, hosting y dominio incluidos.
+                        Sitios profesionales, rápidos y pensados para generar confianza. Diseño, hosting y dominio incluidos.
                     </motion.p>
                     <motion.div
                         className="hero-buttons"
@@ -93,7 +93,7 @@ export default function Home() {
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1, delay: 0.6 }}
                     >
-                        <a href="#servicios" className="btn-primary">Ver paquetes</a>
+                        <a href="#servicios" className="btn-primary">Ver mis servicios</a>
                         <a href="#proyectos" className="btn-secondary">Ver proyectos</a>
                     </motion.div>
                 </div>
@@ -104,7 +104,7 @@ export default function Home() {
                 <div className="container">
                     <div className="text-center mb-8">
                         <h2 className="section-title">Planes de Diseño Web</h2>
-                        <p className="section-subtitle">Inversiones rentables diseñadas para escalar tu negocio en internet.</p>
+                        <p className="section-subtitle">Opciones diseñadas para ayudar a tu negocio a crecer en internet.</p>
                     </div>
 
                     <div className="services-container">
@@ -113,11 +113,11 @@ export default function Home() {
                             title="Web Minimalista"
                             pages="1 Página"
                             price="497€"
-                            desc="El punto de partida ideal. Una presencia online directa y profesional, perfecta para pequeños negocios o profesionales que necesitan presentarse en internet rápida y efectivamente."
+                            desc="El punto de partida ideal. Una presencia online clara y profesional, perfecta para negocios que buscan darse a conocer con confianza."
                             includes={[
-                                "Diseño web profesional",
-                                "Adaptación móvil",
-                                "Formulario de contacto",
+                                "Diseño profesional y atractivo",
+                                "Adaptación perfecta a móviles",
+                                "Formulario de contacto integrado",
                                 "Optimización básica",
                                 "Seguridad básica",
                                 "Hosting incluido",
@@ -131,14 +131,14 @@ export default function Home() {
                             title="Web Standard"
                             pages="Hasta 3 Páginas"
                             price="690€"
-                            desc="La decisión más inteligente. Una estructura sólida diseñada psicológicamente para destacar tu valor diferencial, transmitir confianza absoluta y captar clientes."
+                            desc="La opción más equilibrada. Una web estructurada para destacar tu valor, transmitir empatía y conectar de verdad con tus clientes."
                             includes={[
                                 "Todo lo del plan Minimalista",
                                 "Hasta 3 páginas",
-                                "Arquitectura optimizada para conversión",
+                                "Navegación pensada para guiar al usuario",
                                 "Optimización de velocidad",
                                 "Diseño personalizado",
-                                "Formularios avanzados",
+                                "Formularios de contacto personalizados",
                                 "Hosting incluido",
                                 "Dominio incluido el primer año"
                             ]}
@@ -152,12 +152,12 @@ export default function Home() {
                             title="Web Premium"
                             pages="Hasta 5 Páginas"
                             price="990€"
-                            desc="El estándar más alto. Una plataforma exclusiva y completa para marcas empoderadas que exigen transmitir autoridad y dominar su mercado."
+                            desc="La plataforma más completa. Una web exclusiva para marcas que buscan transmitir autoridad y destacar de forma profesional."
                             includes={[
                                 "Todo lo del plan Standard",
                                 "Hasta 5 páginas",
                                 "Diseño avanzado personalizado",
-                                "Sección portfolio o proyectos",
+                                "Sección de proyectos a medida",
                                 "Animaciones modernas",
                                 "Optimización avanzada"
                             ]}
@@ -174,15 +174,15 @@ export default function Home() {
                         </div>
                         <div className="trust-badge">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                            <span>Seguridad Incluida</span>
+                            <span>Seguridad y Confianza</span>
                         </div>
                         <div className="trust-badge">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                            <span>Carga Ultra Rápida</span>
+                            <span>Navegación Fluida</span>
                         </div>
                         <div className="trust-badge">
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                            <span>Soporte Experto</span>
+                            <span>Soporte Cercano</span>
                         </div>
                     </div>
 
@@ -190,14 +190,14 @@ export default function Home() {
                     <div style={{ marginTop: '5rem' }}>
                         <div className="text-center mb-4">
                             <h3 className="section-title" style={{ fontSize: '2rem' }}>Escala tu proyecto</h3>
-                            <p className="section-subtitle">Soluciones estratégicas adicionales para llevar tu negocio al siguiente nivel.</p>
+                            <p className="section-subtitle">Soluciones diseñadas para seguir sumando valor y crecimiento a tu negocio.</p>
                         </div>
                         <div className="add-service-grid">
                             <AdditionalServiceItem
                                 title="Landing pages promocionales"
                                 content={
                                     <div>
-                                        <p>Plantillas modulares personalizadas para tus campañas (San Valentín, Black Friday...).</p>
+                                        <p>Páginas específicas y atractivas para tus campañas (San Valentín, Black Friday...).</p>
                                         <ul style={{ paddingLeft: '20px', marginTop: '10px' }}>
                                             <li>Rápida publicación (1 a 5 días)</li>
                                             <li>Optimizada para conversiones</li>
@@ -214,9 +214,9 @@ export default function Home() {
                                 title="Web con tienda online (E-commerce)"
                                 content={
                                     <>
-                                        <p style={{ marginBottom: '1rem' }}>Multiplica tus ingresos construyendo una máquina de ventas 24/7. Una tienda online segura, atractiva y de fácil gestión para operar tu negocio digital.</p>
+                                        <p style={{ marginBottom: '1rem' }}>Abre un nuevo canal de ventas disponible las 24 horas. Una tienda online segura, atractiva y fácil de gestionar para tu negocio.</p>
                                         <ul style={{ listStyleType: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                                            <li><span style={{ color: 'var(--accent-color)' }}>✔</span> <strong>Configuración profunda</strong> de tienda online y pasarelas de pago.</li>
+                                            <li><span style={{ color: 'var(--accent-color)' }}>✔</span> <strong>Configuración detallada</strong> de tienda online y pasarelas de pago.</li>
                                             <li><span style={{ color: 'var(--accent-color)' }}>✔</span> <strong>Gestión simplificada</strong> de productos y opciones de envío.</li>
                                             <li><span style={{ color: 'var(--accent-color)' }}>✔</span> <strong>Optimización móvil</strong> para un proceso de compra sin fricciones.</li>
                                             <li><span style={{ color: 'var(--accent-color)' }}>✔</span> <strong>Formación básica</strong> para gestionar la tienda tú mismo.</li>
@@ -229,18 +229,18 @@ export default function Home() {
                                 title="Mantenimiento básico (29€/mes)"
                                 content={
                                     <>
-                                        <p style={{ marginBottom: '1rem' }}>Mantén tu web blindada y operando al 100%. Incluye: actualizaciones, copias de seguridad, seguridad y soporte básico.</p>
+                                        <p style={{ marginBottom: '1rem' }}>Mantén tu web segura, actualizada y funcionando sin problemas. Incluye: actualizaciones, copias y soporte.</p>
                                         <p style={{ fontSize: '0.9rem' }}><em>Nota: Cambios estructurales o rediseños importantes no están incluidos y se presupuestan aparte.</em></p>
                                     </>
                                 }
                             />
                             <AdditionalServiceItem
                                 title="SEO continuo (Desde 180€/mes)"
-                                content="Aparece cuando tus clientes te busquen. Estrategia y optimización mensual enfocada en dominar tu nicho en Google, atraer tráfico relevante y hacer crecer tus oportunidades de negocio."
+                                content="Aparece cuando tus clientes te necesiten. Optimización orientada a destacar en Google, atraer visitas de valor y fomentar el crecimiento."
                             />
                             <AdditionalServiceItem
                                 title="Creación de blogs (90€ por artículo)"
-                                content="Contenido estratégico y persuasivo, optimizado para posicionamiento, pensado para educar a tu audiencia, captar visitas cualificadas y establecerte como autoridad."
+                                content="Artículos útiles y bien cuidados, pensados para educar a tu audiencia, captar visitas interesadas y posicionarte como referente."
                             />
                         </div>
                     </div>
@@ -258,7 +258,7 @@ export default function Home() {
                 <div className="container">
                     <div className="text-center mb-8">
                         <h2 className="section-title">Casos de éxito</h2>
-                        <p className="section-subtitle">Negocios que ya han dado el salto digital y están multiplicando sus resultados.</p>
+                        <p className="section-subtitle">Negocios que ya han dado el paso digital y están mejorando sus resultados.</p>
                     </div>
 
                     <div className="projects-grid">
@@ -298,7 +298,7 @@ export default function Home() {
                                             <div style={{ background: 'rgba(139, 92, 246, 0.1)', padding: '0.6rem', borderRadius: '50%', color: 'var(--accent-color)', flexShrink: 0 }}>
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                                             </div>
-                                            <span style={{ fontSize: '0.95rem', color: 'var(--text-secondary)' }}>Estrategia centrada en la conversión y alto impacto visual.</span>
+                                            <span style={{ fontSize: '0.95rem', color: 'var(--text-secondary)' }}>Diseño centrado en la usabilidad y el impacto visual.</span>
                                         </div>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                             <div style={{ background: 'rgba(139, 92, 246, 0.1)', padding: '0.6rem', borderRadius: '50%', color: 'var(--accent-color)', flexShrink: 0 }}>
@@ -323,8 +323,8 @@ export default function Home() {
             <section className="section">
                 <div className="container">
                     <div className="text-center mb-8">
-                        <h2 className="section-title">Lo que dicen mis clientes</h2>
-                        <p className="section-subtitle">Resultados reales y relaciones a largo plazo.</p>
+                        <h2 className="section-title">Lo que dicen quienes confían en mí</h2>
+                        <p className="section-subtitle">Experiencias reales trabajando juntos en sus proyectos.</p>
                     </div>
                     <div className="testimonial-grid">
                         <div className="testimonial-card">
