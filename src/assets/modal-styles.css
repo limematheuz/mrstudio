@@ -1,0 +1,154 @@
+/* Phase 3: Project Grid and Modals */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+}
+
+.project-grid-card {
+    background: #fff;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    border: 1px solid #eaeaea;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-grid-card:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.project-grid-img {
+    width: 100%;
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-grid-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.project-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(139, 92, 246, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.project-grid-overlay span {
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+}
+
+.project-grid-card:hover .project-grid-overlay {
+    opacity: 1;
+}
+
+.project-grid-card:hover .project-grid-overlay span {
+    transform: translateY(0);
+}
+
+.project-grid-card:hover .project-grid-img img {
+    transform: scale(1.05);
+}
+
+.project-grid-info {
+    padding: 1.5rem;
+}
+
+.project-grid-info h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.project-grid-info p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: var(--radius-card);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.modal-close:hover {
+    background: var(--accent-color);
+}
+
+.modal-img-container {
+    width: 100%;
+    height: 350px;
+}
+
+.modal-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-text {
+    padding: 2.5rem;
+}
+
+@media (max-width: 768px) {
+    .modal-img-container {
+        height: 250px;
+    }
+
+    .modal-text {
+        padding: 1.5rem;
+    }
+}
