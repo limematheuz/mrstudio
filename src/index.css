@@ -516,7 +516,6 @@ p {
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
     z-index: 1;
     border: 2px solid var(--accent-color);
-    overflow: hidden;
 }
 
 .service-card-web-standard::before {
@@ -524,6 +523,8 @@ p {
     pointer-events: none;
     position: absolute;
     inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
     background: radial-gradient(
         800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
         rgba(139, 92, 246, 0.15),
@@ -548,8 +549,11 @@ p {
     opacity: 1;
 }
 
+.service-card .btn-secondary:hover,
 .service-card-web-standard .btn-secondary:hover {
-    color: var(--accent-color) !important;
+    background-color: var(--accent-color) !important;
+    color: white !important;
+    border-color: var(--accent-color) !important;
 }
 
 .service-card-web-standard:hover svg {

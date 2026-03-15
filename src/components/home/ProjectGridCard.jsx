@@ -5,9 +5,6 @@ export default function ProjectGridCard({ project, onClick }) {
         <motion.div
             className="project-grid-card"
             onClick={onClick}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             whileHover={{ y: -5 }}
         >
             <div className="project-grid-img" style={{ height: '350px' }}>

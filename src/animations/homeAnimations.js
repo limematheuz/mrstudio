@@ -64,7 +64,7 @@ export function initHomeAnimations() {
                 stagger: 0.15,
                 ease: "power3.out",
                 scrollTrigger: {
-                    trigger: '.project-grid',
+                    trigger: '.projects-grid', /* Fixed typo from .project-grid */
                     start: "top 75%",
                     once: true
                 }
@@ -110,7 +110,7 @@ export function initHomeAnimations() {
             };
 
             gsap.from('.service-card',      { ...mobileDefaults, scrollTrigger: { trigger: '.services-container', start: "top 85%", once: true } });
-            gsap.from('.project-grid-card', { ...mobileDefaults, scrollTrigger: { trigger: '.project-grid', start: "top 85%", once: true } });
+            gsap.from('.project-grid-card', { ...mobileDefaults, scrollTrigger: { trigger: '.projects-grid', start: "top 85%", once: true } });
             gsap.from('.bg-gradient-brand .white-card', { ...mobileDefaults, scrollTrigger: { trigger: '.bg-gradient-brand .services-container', start: "top 85%", once: true } });
             gsap.from('.testimonial-card',  { ...mobileDefaults, scrollTrigger: { trigger: '.testimonial-grid', start: "top 85%", once: true } });
         }
