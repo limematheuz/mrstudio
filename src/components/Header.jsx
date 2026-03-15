@@ -61,7 +61,7 @@ export default function Header() {
 
                 <div className="mobile-menu-bottom">
                     <a href="#contacto" className="btn-primary mobile-contact-btn" onClick={closeMenu}>
-                        Hablar con un experto
+                        Contactar
                     </a>
                     
                     <div className="mobile-menu-logo">
