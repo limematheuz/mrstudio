@@ -27,7 +27,7 @@ export default function Home() {
     });
 
     return (
-        <div style={{ background: 'var(--bg-primary)', position: 'relative' }}>
+        <div className="home" style={{ position: 'relative' }}>
             <ParticlesBackground />
             
             <HeroSection />
