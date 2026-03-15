@@ -1,4 +1,20 @@
-@import './styles/tokens.css';
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #fdfdfd;
+    --text-primary: #000000;
+    --text-secondary: #4b4b4b;
+    --text-muted: #888888;
+    --accent-color: #8b5cf6;
+    /* Elegant purple */
+    --accent-hover: #7c3aed;
+    --accent-blue: #3b82f6;
+    /* Blue for gradient */
+
+    --font-sans: 'Inter', sans-serif;
+
+    --radius-btn: 100px;
+    --radius-card: 20px;
+}
 
 * {
     box-sizing: border-box;
@@ -661,7 +677,7 @@ p {
     backdrop-filter: blur(10px);
     padding: 4rem 3rem;
     border-radius: var(--radius-card);
-    box-shadow: var(--shadow-contact);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
     border: 1px solid rgba(139, 92, 246, 0.2);
     position: relative;
     overflow: hidden;
@@ -780,10 +796,16 @@ p {
     align-items: center;
     gap: 1rem;
     cursor: pointer;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1.2rem;
     color: var(--text-primary);
     user-select: none;
+    transition: background-color 0.3s;
+}
+
+.add-service-item.open .add-service-header,
+.add-service-header:hover {
+    background-color: rgba(139, 92, 246, 0.03);
 }
 
 @media (min-width: 768px) {
