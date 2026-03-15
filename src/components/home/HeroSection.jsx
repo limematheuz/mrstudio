@@ -56,8 +56,20 @@ export default function HeroSection() {
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent'
                         }}>
-                            {"Creamos webs que ayudan a tu ".split('').map((char, index) => (
-                                <span key={`l1-${index}`} className="char" style={{ opacity: 0, display: 'inline-block', whiteSpace: 'pre' }}>
+                            {"Creamos webs que ".split('').map((char, index) => (
+                                <span key={`l1a-${index}`} className="char" style={{ opacity: 0, display: 'inline-block', whiteSpace: 'pre' }}>
+                                    {char === ' ' ? ' ' : char}
+                                </span>
+                            ))}
+                            <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+                                {"ayudan".split('').map((char, index) => (
+                                    <span key={`l1b-${index}`} className="char" style={{ opacity: 0, display: 'inline-block', whiteSpace: 'pre' }}>
+                                        {char}
+                                    </span>
+                                ))}
+                            </span>
+                            {" a tu ".split('').map((char, index) => (
+                                <span key={`l1c-${index}`} className="char" style={{ opacity: 0, display: 'inline-block', whiteSpace: 'pre' }}>
                                     {char === ' ' ? ' ' : char}
                                 </span>
                             ))}
