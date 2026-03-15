@@ -51,7 +51,7 @@ export default function Header() {
             <div className={`mobile-menu-backdrop ${menuOpen ? 'open' : ''}`} onClick={closeMenu}></div>
 
             <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                <div className="mobile-menu-links">
                     <Link to="/" className={location.pathname === '/' && !location.hash ? 'active' : ''} onClick={closeMenu}>Inicio</Link>
                     <Link to="/aboutme" className={isActive('/aboutme') ? 'active' : ''} onClick={closeMenu}>Sobre mí</Link>
                     <Link to="/precios" className={isActive('/precios') ? 'active' : ''} onClick={closeMenu}>Precios</Link>
