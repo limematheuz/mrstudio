@@ -544,6 +544,8 @@ p {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    align-items: start; /* align cards to top, not stretched */
+    padding-top: 2rem; /* leave room for the Recomendado badge */
 }
 
 @media (max-width: 968px) {
@@ -561,7 +563,8 @@ p {
     flex-direction: column;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
     z-index: 1;
-    border: 1px solid #d0d0d0;
+    border: 1px solid rgba(139, 92, 246, 0.2); /* Very light accent purple */
+    margin-top: 2rem; /* Push down to align with the Recomendado-badge card */
 }
 
 .service-card::before {
