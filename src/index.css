@@ -840,6 +840,8 @@ p {
 
 /* Footer Links */
 .footer {
+    position: relative;
+    z-index: 3;
     background: #fdfdfd;
     padding: 4rem 2rem 2rem 2rem;
     color: var(--text-secondary);
