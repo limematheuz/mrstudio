@@ -1,29 +1,18 @@
 import KernelAuditLogo from '../../assets/kernel-audit.svg';
+import RemodelingLogo from '../../assets/remodeling-logo.svg';
+import InnovaticLogo from '../../assets/innovatic-logo.svg';
+import ElhaLogo from '../../assets/elha-logo.svg';
+
+const logoStyle = { height: '2.4rem', filter: 'brightness(0)', opacity: 0.75 };
+const wrapStyle = { padding: '0 3rem', display: 'inline-flex', alignItems: 'center' };
 
 export default function MarqueeContent() {
-    const items = ["RRJ Remodeling", "Pedro's Remodeling NC", "ELHA EPILATION", "Centri Elha", "Elha Depilación", "INNOVATIC"];
     return (
         <div style={{ display: 'flex', width: '100%', justifyContent: 'space-around', alignItems: 'center' }}>
-            {/* Regular text items */}
-            {items.map((item, i) => (
-                <span key={i} style={{
-                    fontSize: '2.5rem',
-                    fontWeight: 800,
-                    color: 'rgba(0,0,0,0.8)',
-                    whiteSpace: 'nowrap',
-                    padding: '0 3rem'
-                }}>
-                    {item}
-                </span>
-            ))}
-            {/* Kernel Audit logo */}
-            <span style={{ padding: '0 3rem', display: 'inline-flex', alignItems: 'center' }}>
-                <img
-                    src={KernelAuditLogo}
-                    alt="Kernel Audit Auditores"
-                    style={{ height: '2.2rem', filter: 'brightness(0)', opacity: 0.8 }}
-                />
-            </span>
+            <span style={wrapStyle}><img src={RemodelingLogo} alt="RRJ Remodeling" style={{ ...logoStyle, height: '3rem' }} /></span>
+            <span style={wrapStyle}><img src={InnovaticLogo} alt="Innovatic" style={{ ...logoStyle, height: '2rem' }} /></span>
+            <span style={wrapStyle}><img src={ElhaLogo} alt="Elha Laser Center" style={{ ...logoStyle, height: '1.6rem' }} /></span>
+            <span style={wrapStyle}><img src={KernelAuditLogo} alt="Kernel Audit Auditores" style={{ ...logoStyle, height: '2.2rem' }} /></span>
         </div>
     );
 }
