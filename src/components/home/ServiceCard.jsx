@@ -34,13 +34,26 @@ export default function ServiceCard({ title, pages, desc, link, featured, badge,
     const wrapperClass = isWebStandard ? 'service-card-web-standard' : `service-card ${featured ? 'featured' : ''}`;
     const effectiveFeatured = isWebStandard ? false : featured;
 
+    const handleMouseMove = (e) => {
+        if (!isWebStandard) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+        e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+    };
+
     return (
-        <div className={wrapperClass.trim()} style={{ display: 'flex', flexDirection: 'column' }}>
+        <div 
+            className={wrapperClass.trim()} 
+            style={{ display: 'flex', flexDirection: 'column' }}
+            onMouseMove={handleMouseMove}
+        >
             {badge && <div className="badge-popular">{badge}</div>}
             <h3 style={{ fontSize: '1.5rem', marginBottom: '0.2rem' }}>{title}</h3>
             {pages && <div style={{ color: 'var(--text-primary)', fontWeight: 800, marginBottom: '0.5rem' }}>{pages}</div>}
 
-            {price && <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--accent-color)', marginBottom: '1rem' }}>{price}</div>}
+            {price && <div className="service-price" style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--accent-color)', marginBottom: '1rem', letterSpacing: '-0.02em', textShadow: '0 2px 10px rgba(139, 92, 246, 0.1)' }}>{price}</div>}
 
             <p style={{ marginBottom: '1.5rem', fontSize: '1rem', color: 'var(--text-secondary)' }}>{desc}</p>
 
