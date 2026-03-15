@@ -35,6 +35,21 @@ export default function Header() {
         return location.pathname === path || location.pathname.startsWith(path + '/');
     };
 
+    useEffect(() => {
+        if (menuOpen) {
+            document.body.style.overflow = 'hidden';
+            document.body.style.touchAction = 'none'; // Re-enforce scroll lock on mobile Safari
+        } else {
+            document.body.style.overflow = '';
+            document.body.style.touchAction = '';
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+            document.body.style.touchAction = '';
+        };
+    }, [menuOpen]);
+
     return (
         <>
             <header className={`header ${scrolled ? 'scrolled' : ''}`}>
@@ -66,6 +81,12 @@ export default function Header() {
             <div className={`mobile-menu-backdrop ${menuOpen ? 'open' : ''}`} onClick={closeMenu}></div>
 
             <nav className={`mobile-nav-container ${menuOpen ? 'open' : ''}`}>
+                <button className="mobile-close-btn" onClick={closeMenu} aria-label="Cerrar Menú">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
                 <div className="mobile-menu-links">
                     <Link to="/" className={location.pathname === '/' && !location.hash ? 'active' : ''} onClick={closeMenu}>Inicio</Link>
                     <Link to="/aboutme" className={isActive('/aboutme') ? 'active' : ''} onClick={closeMenu}>Sobre mí</Link>
