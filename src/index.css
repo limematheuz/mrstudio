@@ -170,7 +170,7 @@ h4 {
     font-family: var(--font-sans);
     font-weight: 500;
     /* Made slightly bolder as requested */
-    font-size: clamp(3rem, 6vw, 5rem);
+    font-size: clamp(2.3rem, 6vw, 5rem);
     line-height: 1.1;
     letter-spacing: -0.04em;
 }
@@ -254,21 +254,46 @@ p {
     position: relative;
 }
 
+.section-hero {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+}
+
+.section-planes {
+    padding-top: 4rem;
+}
+
+@media (max-width: 1024px) {
+    .section {
+        padding: 3rem 0;
+    }
+    .section-hero {
+        padding-top: 6rem;
+        padding-bottom: 3rem;
+    }
+    .section-planes {
+        padding-top: 2.5rem;
+    }
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 0 1.2rem;
     }
+}
 
+@media (max-width: 480px) {
     .section {
         padding: 2rem 0;
     }
 
     .section-hero {
-        padding-top: 1rem !important;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
     }
 
     .section-planes {
-        padding-top: 1rem !important;
+        padding-top: 2rem;
     }
 
     .header {
@@ -755,27 +780,42 @@ p {
 }
 
 .add-service-header {
-    padding: 1.5rem 2rem;
+    padding: 1.2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.2rem;
     color: var(--text-primary);
     user-select: none;
+}
+
+@media (min-width: 768px) {
+    .add-service-header {
+        padding: 1.5rem 2rem;
+    }
 }
 
 .add-service-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
     border-radius: 50%;
     background: rgba(139, 92, 246, 0.1);
     color: var(--accent-color);
-    transition: transform 0.3s;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.add-service-item:hover .add-service-icon {
+    background: var(--accent-color);
+}
+.add-service-item:hover .add-service-icon svg {
+    stroke: white;
 }
 
 .add-service-content {
@@ -809,7 +849,7 @@ p {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    gap: 2rem;
+    gap: 1.5rem;
     padding: 1rem 0 3rem 0;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -906,6 +946,54 @@ p {
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s;
+}
+
+/* Testimonials new styles */
+.testimonial-author-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-color) 100%);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.testimonial-quote-icon {
+    color: rgba(139, 92, 246, 0.15);
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1.5rem;
+        padding-bottom: 2rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        grid-template-columns: none;
+    }
+    .projects-grid::-webkit-scrollbar {
+        display: none;
+    }
+    .project-grid-card {
+        flex: 0 0 85%;
+        scroll-snap-align: center;
+    }
+    .testimonial-card {
+        min-width: 85%;
+        padding: 2rem 1.5rem;
+    }
 }
 
 .project-grid-overlay {

@@ -81,7 +81,7 @@ export default function Home() {
             <ParticlesBackground />
 
             {/* Hero Section */}
-            <section className="section text-center" style={{ paddingTop: '15rem', paddingBottom: '10rem' }} ref={heroRef}>
+            <section className="section section-hero text-center" ref={heroRef}>
                 <div className="container">
                     <div>
                         <div className="hero-anim-item" style={{ opacity: 0 }}>
@@ -144,7 +144,7 @@ export default function Home() {
             </section>
 
             {/* Services Section */}
-            <section id="servicios" className="section">
+            <section id="servicios" className="section section-planes">
                 <div className="container">
                     <div className="text-center mb-8">
                         <h2 className="section-title">Planes de Diseño Web</h2>
@@ -396,20 +396,41 @@ export default function Home() {
                         <p className="section-subtitle">Experiencias reales trabajando juntos en sus proyectos.</p>
                     </div>
                     <div className="testimonial-grid">
-                        <div className="testimonial-card">
+                        <div className="testimonial-card" style={{ position: 'relative' }}>
+                            <svg className="testimonial-quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
                             <div style={{ display: 'flex', color: '#fbbf24', marginBottom: '1rem' }}>★★★★★</div>
-                            <p style={{ fontStyle: 'italic', marginBottom: '1rem' }}>"Desde que renovamos la web, la cantidad de clientes que nos contactan ha subido significativamente. El diseño es exactamente lo que queríamos, muy profesional."</p>
-                            <h4 style={{ fontWeight: 600 }}>Director - Elha Epilation</h4>
+                            <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', color: 'var(--text-primary)', fontSize: '1.05rem', lineHeight: 1.6 }}>"Desde que renovamos la web, la cantidad de clientes que nos contactan ha subido significativamente. El diseño es exactamente lo que queríamos, muy profesional."</p>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', borderTop: '1px solid #eaeaea', paddingTop: '1.5rem' }}>
+                                <div className="testimonial-author-avatar">E</div>
+                                <div>
+                                    <h4 style={{ fontWeight: 700, margin: 0, color: 'var(--text-primary)' }}>Director</h4>
+                                    <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Elha Epilation</span>
+                                </div>
+                            </div>
                         </div>
-                        <div className="testimonial-card">
+                        <div className="testimonial-card" style={{ position: 'relative' }}>
+                            <svg className="testimonial-quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
                             <div style={{ display: 'flex', color: '#fbbf24', marginBottom: '1rem' }}>★★★★★</div>
-                            <p style={{ fontStyle: 'italic', marginBottom: '1rem' }}>"Trabajar con Matheus fue un acierto. Entendió nuestra visión para la empresa de remodelación al instante y nos entregó una web que da mucha confianza."</p>
-                            <h4 style={{ fontWeight: 600 }}>Gerente - RRJ Remodeling</h4>
+                            <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', color: 'var(--text-primary)', fontSize: '1.05rem', lineHeight: 1.6 }}>"Trabajar con Matheus fue un acierto. Entendió nuestra visión para la empresa de remodelación al instante y nos entregó una web que da mucha confianza."</p>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', borderTop: '1px solid #eaeaea', paddingTop: '1.5rem' }}>
+                                <div className="testimonial-author-avatar">R</div>
+                                <div>
+                                    <h4 style={{ fontWeight: 700, margin: 0, color: 'var(--text-primary)' }}>Gerente</h4>
+                                    <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>RRJ Remodeling</span>
+                                </div>
+                            </div>
                         </div>
-                        <div className="testimonial-card">
+                        <div className="testimonial-card" style={{ position: 'relative' }}>
+                            <svg className="testimonial-quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
                             <div style={{ display: 'flex', color: '#fbbf24', marginBottom: '1rem' }}>★★★★★</div>
-                            <p style={{ fontStyle: 'italic', marginBottom: '1rem' }}>"La web es limpia, rápida y muy intuitiva. Exactamente el reflejo tecnológico que queríamos dar a nuestra empresa IT."</p>
-                            <h4 style={{ fontWeight: 600 }}>CEO - Innovatic</h4>
+                            <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', color: 'var(--text-primary)', fontSize: '1.05rem', lineHeight: 1.6 }}>"La web es limpia, rápida y muy intuitiva. Exactamente el reflejo tecnológico que queríamos dar a nuestra empresa IT."</p>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', borderTop: '1px solid #eaeaea', paddingTop: '1.5rem' }}>
+                                <div className="testimonial-author-avatar">I</div>
+                                <div>
+                                    <h4 style={{ fontWeight: 700, margin: 0, color: 'var(--text-primary)' }}>CEO</h4>
+                                    <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Innovatic</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -568,7 +589,7 @@ function AdditionalServiceItem({ title, content, icon }) {
     const [isOpen, setIsOpen] = useState(false);
     return (
         <div
-            className="add-service-item"
+            className={`add-service-item ${isOpen ? 'open' : ''}`}
             onClick={() => setIsOpen(!isOpen)}
             role="button"
             tabIndex={0}
@@ -576,12 +597,12 @@ function AdditionalServiceItem({ title, content, icon }) {
             onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsOpen(!isOpen) } }}
         >
             <div className="add-service-header">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                    {icon && <div style={{ color: 'var(--accent-color)' }}>{icon}</div>}
-                    <span style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--text-primary)' }}>{title}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', width: 'calc(100% - 3rem)' }}>
+                    {icon && <div style={{ color: isOpen ? 'var(--accent-color)' : 'var(--text-secondary)', transition: 'color 0.3s', flexShrink: 0 }}>{icon}</div>}
+                    <span style={{ fontWeight: 800, fontSize: 'clamp(1.1rem, 4vw, 1.3rem)', color: isOpen ? 'var(--accent-color)' : 'var(--text-primary)', transition: 'color 0.3s', lineHeight: 1.2 }}>{title}</span>
                 </div>
                 <div className="add-service-icon" style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}>
-                    <svg width="24" height="24" fill="none" stroke="var(--accent-color)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+                    <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
                 </div>
             </div>
             <div className={`add-service-content ${isOpen ? 'open' : ''}`}>
