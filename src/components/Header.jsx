@@ -36,21 +36,36 @@ export default function Header() {
     };
 
     return (
-        <header className={`header ${scrolled ? 'scrolled' : ''}`}>
-            <Link to="/" className="logo" onClick={closeMenu} style={{ fontSize: '1.2rem', fontWeight: 600 }}>
-                <span className="logo-highlight">MR</span>Studio
-            </Link>
+        <>
+            <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+                <Link to="/" className="logo" onClick={closeMenu} style={{ fontSize: '1.2rem', fontWeight: 600 }}>
+                    <span className="logo-highlight">MR</span>Studio
+                </Link>
 
-            <button className={`hamburger ${menuOpen ? 'active' : ''}`} onClick={toggleMenu} aria-label={menuOpen ? "Cerrar Menú" : "Abrir Menú"} aria-expanded={menuOpen}>
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+                <button className={`hamburger ${menuOpen ? 'active' : ''}`} onClick={toggleMenu} aria-label={menuOpen ? "Cerrar Menú" : "Abrir Menú"} aria-expanded={menuOpen}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
-            {/* Backdrop para el modal del menú */}
+                {/* Navbar Desktop Links */}
+                <nav className="nav-links desktop-only-nav">
+                    <Link to="/" className={location.pathname === '/' && !location.hash ? 'active' : ''} onClick={closeMenu}>Inicio</Link>
+                    <Link to="/aboutme" className={isActive('/aboutme') ? 'active' : ''} onClick={closeMenu}>Sobre mí</Link>
+                    <Link to="/precios" className={isActive('/precios') ? 'active' : ''} onClick={closeMenu}>Precios</Link>
+                    <a href="/#servicios" className={isActive('/#servicios') ? 'active' : ''} onClick={closeMenu}>Servicios</a>
+                    <a href="/#proyectos" className={isActive('/#proyectos') ? 'active' : ''} onClick={closeMenu}>Proyectos</a>
+                </nav>
+
+                <a href="#contacto" className="btn-primary btn-header desktop-only-btn" style={{ padding: '0.4rem 1.2rem', fontSize: '0.85rem' }}>
+                    Contactar
+                </a>
+            </header>
+
+            {/* Mobile Menu Portal Equivalent */}
             <div className={`mobile-menu-backdrop ${menuOpen ? 'open' : ''}`} onClick={closeMenu}></div>
 
-            <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
+            <nav className={`mobile-nav-container ${menuOpen ? 'open' : ''}`}>
                 <div className="mobile-menu-links">
                     <Link to="/" className={location.pathname === '/' && !location.hash ? 'active' : ''} onClick={closeMenu}>Inicio</Link>
                     <Link to="/aboutme" className={isActive('/aboutme') ? 'active' : ''} onClick={closeMenu}>Sobre mí</Link>
@@ -69,10 +84,6 @@ export default function Header() {
                     </div>
                 </div>
             </nav>
-
-            <a href="#contacto" className="btn-primary btn-header desktop-only-btn" style={{ padding: '0.4rem 1.2rem', fontSize: '0.85rem' }}>
-                Contactar
-            </a>
-        </header>
+        </>
     );
 }
