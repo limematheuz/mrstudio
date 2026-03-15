@@ -1,32 +1,26 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { submitContactForm } from '../services/contactService';
 
 export default function ContactForm({ defaultService = '' }) {
     const [status, setStatus] = useState('idle');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('sending');
 
         const form = e.target;
         const body = new FormData(form);
 
-        fetch('https://formsubmit.co/ajax/mribeiro17.info@gmail.com', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json'
-            },
-            body: body
-        })
-            .then(response => response.json())
-            .then(data => {
-                setStatus('success');
-                form.reset();
-            })
-            .catch(error => {
-                console.error(error);
-                setStatus('error');
-            });
+        const result = await submitContactForm(body);
+
+        if (result.success) {
+            setStatus('success');
+            form.reset();
+        } else {
+            console.error(result.error);
+            setStatus('error');
+        }
     };
 
     return (
