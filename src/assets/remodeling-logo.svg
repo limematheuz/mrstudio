@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 90" fill="currentColor" aria-label="RRJ Remodeling">
+  <!-- Left large house with P loop -->
+  <!-- P loop (rounded left portion) -->
+  <path d="M 28 78 L 28 42 L 48 22 L 68 42 L 68 50 L 60 50 L 60 42 L 48 31 L 36 42 L 36 78 Z" fill="currentColor"/>
+  <!-- P circular top loop -->
+  <path d="M 13 62 A 22 22 0 1 1 13 20 L 28 20 L 28 28 L 20 28 A 14 14 0 1 0 20 54 L 36 54 L 36 62 Z" fill="currentColor"/>
+  <!-- Window in left house -->
+  <rect x="42" y="54" width="7" height="7" fill="white"/>
+  <rect x="42" y="62" width="7" height="7" fill="white"/>
+  <rect x="50" y="54" width="7" height="7" fill="white"/>
+  <rect x="50" y="62" width="7" height="7" fill="white"/>
+
+  <!-- Right smaller house -->
+  <polygon points="120,30 145,10 170,30" fill="currentColor"/>
+  <rect x="128" y="30" width="34" height="48" fill="currentColor"/>
+  <!-- Right house window -->
+  <rect x="135" y="38" width="9" height="9" fill="white"/>
+  <rect x="146" y="38" width="9" height="9" fill="white"/>
+  <rect x="135" y="49" width="9" height="9" fill="white"/>
+  <rect x="146" y="49" width="9" height="9" fill="white"/>
+</svg>

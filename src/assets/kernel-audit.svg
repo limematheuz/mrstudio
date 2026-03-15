@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 60" fill="currentColor" aria-label="Kernel Audit">
+  <!-- K geometric mark (simplified from the teal triangle logo) -->
+  <g>
+    <!-- Outer circle -->
+    <circle cx="30" cy="30" r="28" fill="none" stroke="currentColor" stroke-width="2.5"/>
+    <!-- K letter paths -->
+    <line x1="18" y1="14" x2="18" y2="46" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="18" y1="30" x2="38" y2="14" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="18" y1="30" x2="38" y2="46" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
+  </g>
+  <!-- "Kernel Audit" text -->
+  <text x="70" y="27" font-family="Georgia, serif" font-size="20" font-weight="400" letter-spacing="0.5">Kernel Audit</text>
+  <!-- "AUDITORES" subtext -->
+  <text x="70" y="46" font-family="Arial, sans-serif" font-size="10" font-weight="400" letter-spacing="3">AUDITORES</text>
+</svg>

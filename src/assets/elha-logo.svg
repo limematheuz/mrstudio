@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 40" fill="currentColor" aria-label="Elha Laser Center">
+  <!-- "elha laser center" text (serif, light weight) -->
+  <text x="0" y="28" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="300" letter-spacing="1.5" fill="currentColor">elha laser center</text>
+  <!-- "+" symbol at end -->
+  <line x1="228" y1="8" x2="228" y2="30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <line x1="218" y1="19" x2="238" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>

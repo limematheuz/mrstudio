@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" fill="currentColor" aria-label="Pedro's Remodeling NC">
+  <!-- Roof / chevron shape -->
+  <polyline
+    points="10,95 80,15 150,95"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="16"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  />
+  <!-- Diagonal arrow / slash going bottom-left -->
+  <line
+    x1="10" y1="95"
+    x2="50" y2="55"
+    stroke="currentColor"
+    stroke-width="16"
+    stroke-linecap="square"
+  />
+  <!-- Arrow tip pointing left-down -->
+  <polyline
+    points="15,70 10,95 35,90"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
