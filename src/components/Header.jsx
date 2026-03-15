@@ -47,17 +47,27 @@ export default function Header() {
                 <span></span>
             </button>
 
-            <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
-                <Link to="/" className={location.pathname === '/' && !location.hash ? 'active' : ''} onClick={closeMenu}>Inicio</Link>
-                <Link to="/aboutme" className={isActive('/aboutme') ? 'active' : ''} onClick={closeMenu}>Sobre mí</Link>
-                <Link to="/precios" className={isActive('/precios') ? 'active' : ''} onClick={closeMenu}>Precios</Link>
-                <a href="/#servicios" className={isActive('/#servicios') ? 'active' : ''} onClick={closeMenu}>Servicios</a>
-                <a href="/#proyectos" className={isActive('/#proyectos') ? 'active' : ''} onClick={closeMenu}>Proyectos</a>
+            {/* Backdrop para el modal del menú */}
+            <div className={`mobile-menu-backdrop ${menuOpen ? 'open' : ''}`} onClick={closeMenu}></div>
 
-                {/* Botón contactar dentro del menú en móvil, fuera en desktop */}
-                <a href="#contacto" className="btn-primary btn-header mobile-only-btn" onClick={closeMenu} style={{ marginTop: '1rem' }}>
-                    Contactar
-                </a>
+            <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                    <Link to="/" className={location.pathname === '/' && !location.hash ? 'active' : ''} onClick={closeMenu}>Inicio</Link>
+                    <Link to="/aboutme" className={isActive('/aboutme') ? 'active' : ''} onClick={closeMenu}>Sobre mí</Link>
+                    <Link to="/precios" className={isActive('/precios') ? 'active' : ''} onClick={closeMenu}>Precios</Link>
+                    <a href="/#servicios" className={isActive('/#servicios') ? 'active' : ''} onClick={closeMenu}>Servicios</a>
+                    <a href="/#proyectos" className={isActive('/#proyectos') ? 'active' : ''} onClick={closeMenu}>Proyectos</a>
+                </div>
+
+                <div className="mobile-menu-bottom">
+                    <a href="#contacto" className="btn-primary mobile-contact-btn" onClick={closeMenu}>
+                        Hablar con un experto
+                    </a>
+                    
+                    <div className="mobile-menu-logo">
+                        <span className="logo-highlight">MR</span>Studio
+                    </div>
+                </div>
             </nav>
 
             <a href="#contacto" className="btn-primary btn-header desktop-only-btn" style={{ padding: '0.4rem 1.2rem', fontSize: '0.85rem' }}>
