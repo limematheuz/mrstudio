@@ -254,8 +254,8 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Marquee Slider */}
-            <section style={{ padding: '6rem 0', overflow: 'hidden' }}>
+            {/* Marquee Slider — temporalmente oculto */}
+            {/* <section style={{ padding: '6rem 0', overflow: 'hidden' }}>
                 <div className="marquee-mask">
                     <div style={{ display: 'flex', width: '200%', opacity: 0.6, animation: 'marquee 20s linear infinite' }}>
                         <MarqueeContent />
@@ -268,7 +268,7 @@ export default function Home() {
             100% { transform: translateX(-50%); }
           }
         `}</style>
-            </section>
+            </section> */}
 
             {/* Functional Contact */}
             <section className="section" style={{ paddingBottom: '2rem' }}>
