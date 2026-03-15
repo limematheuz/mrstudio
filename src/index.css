@@ -383,16 +383,16 @@ p {
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         position: fixed;
-        top: 2vh;
-        bottom: 2vh;
+        top: 10vh;
+        bottom: 10vh;
         right: -100%;
         width: 90%;
-        height: 96vh;
+        height: 80vh;
         border-radius: 24px;
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         border: 1px solid rgba(255, 255, 255, 0.6);
         transition: right 0.5s cubic-bezier(0.8, 0, 0.2, 1);
-        padding: 3rem 1.5rem 1rem 1.5rem; /* Reduced padding top/bottom to save vertical space */
+        padding: 2.5rem 1.5rem 1rem 1.5rem; /* Drastically reduced top padding */
         gap: 0;
         z-index: 100;
         overflow: hidden;
@@ -434,10 +434,10 @@ p {
     }
 
     .mobile-nav-container a {
-        font-size: 1.4rem; /* Reduced font-size */
+        font-size: 1.3rem; /* Further reduced font-size */
         font-family: 'Outfit', sans-serif;
         font-weight: 700;
-        padding: 0.6rem 0; /* Reduced padding */
+        padding: 0.4rem 0; /* Further reduced padding */
         color: #1e293b;
         display: flex;
         align-items: center;
@@ -468,9 +468,9 @@ p {
 
     .mobile-contact-btn {
         width: 100%;
-        padding: 1rem; /* Reduced from 1.2rem */
+        padding: 0.8rem; /* Extremely tight padding */
         border-radius: 12px;
-        font-size: 1.05rem;
+        font-size: 1rem;
         font-weight: 700;
         background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-blue) 100%);
         color: white !important;
