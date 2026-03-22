@@ -5,11 +5,11 @@ export default function ProjectGridCard({ project, onClick }) {
         <motion.div
             className="project-grid-card"
             onClick={onClick}
-            whileHover={{ y: -5, boxShadow: project.isIsometric ? '0px 20px 40px rgba(234, 221, 220, 0.8)' : undefined }}
+            whileHover={{ y: -5, boxShadow: project.isIsometric ? project.isometricColors?.shadow : undefined }}
         >
             <div className="project-grid-img" style={{ height: '350px' }}>
                 {project.isIsometric ? (
-                    <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #eadddc, #fdfbf9)', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: '1500px' }}>
+                    <div style={{ width: '100%', height: '100%', background: project.isometricColors?.gradient || '#fdfbf9', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: '1500px' }}>
                         <motion.div 
                             style={{ position: 'relative', width: '260px', height: '150px', transformStyle: 'preserve-3d', transform: 'rotateX(20deg) rotateY(-25deg) rotateZ(5deg)' }}
                             whileHover={{ rotateX: 10, rotateY: -15, rotateZ: 2, scale: 1.05 }}

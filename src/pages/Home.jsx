@@ -189,7 +189,7 @@ export default function Home() {
                                 <button className="modal-close" onClick={() => setSelectedProject(null)}>✕</button>
                                 <div className="modal-img-container">
                                 {selectedProject.isIsometric ? (
-                                    <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #eadddc, #fdfbf9)', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: '1500px' }}>
+                                    <div style={{ width: '100%', height: '100%', background: selectedProject.isometricColors?.gradient || '#fdfbf9', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: '1500px' }}>
                                         <motion.div 
                                             style={{ position: 'relative', width: '260px', height: '150px', transformStyle: 'preserve-3d', transform: 'rotateX(20deg) rotateY(-25deg) rotateZ(5deg)' }}
                                             whileHover={{ rotateX: 10, rotateY: -15, rotateZ: 2, scale: 1.05 }}

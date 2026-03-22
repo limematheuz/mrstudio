@@ -8,7 +8,12 @@ export const projectsData = [
     {
         title: "Pedro's Remodeling NC",
         desc: "Digitalización local que facilita el contacto. Diseño minimalista y formularios claros para conectar con clientes.",
-        img: "/images/pedros_mockup.avif",
+        isIsometric: true,
+        img: ["/images/pedro1.avif", "/images/pedro2.avif"],
+        isometricColors: {
+            gradient: "linear-gradient(135deg, #e0f2fe, #f0f9ff)",
+            shadow: "0px 20px 40px rgba(186, 230, 253, 0.8)"
+        },
         link: "https://pedrosremodelingnc.com/"
     },
     {
@@ -16,6 +21,10 @@ export const projectsData = [
         desc: "Portales refinados para el sector de belleza, diseñados para hacer que la reserva de citas sea un proceso sencillo y fluido.",
         isIsometric: true,
         img: ["/images/elha1.avif", "/images/elha2.avif"],
+        isometricColors: {
+            gradient: "linear-gradient(135deg, #eadddc, #fdfbf9)",
+            shadow: "0px 20px 40px rgba(234, 221, 220, 0.8)"
+        },
         link: "https://elhaepilationlaser.fr/"
     },
     {
