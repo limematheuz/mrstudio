@@ -1092,14 +1092,51 @@ p {
 .project-grid-card {
     background: #fff;
     border-radius: var(--radius-card);
-    overflow: hidden;
     border: 1px solid #eaeaea;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+/* Neon border glow container */
+.project-grid-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: calc(var(--radius-card) + 2px);
+    background: conic-gradient(
+        from var(--neon-angle, 0deg),
+        transparent 0deg,
+        transparent 260deg,
+        #a78bfa 290deg,
+        #8b5cf6 320deg,
+        #c4b5fd 340deg,
+        transparent 360deg
+    );
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    animation: none;
+}
+
+.project-grid-card:hover::before {
+    opacity: 1;
+    animation: neonSpin 2.5s linear infinite;
+}
+
+@keyframes neonSpin {
+    from { --neon-angle: 0deg; }
+    to { --neon-angle: 360deg; }
+}
+
+@property --neon-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
 }
 
 .project-grid-card:hover {
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 15px 35px rgba(139, 92, 246, 0.15);
 }
 
 .project-grid-img {
@@ -1108,6 +1145,7 @@ p {
     position: relative;
     overflow: hidden;
     background: #f4f4f4;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
 }
 
 .project-grid-img img {
