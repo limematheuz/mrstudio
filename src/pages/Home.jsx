@@ -188,7 +188,14 @@ export default function Home() {
                             >
                                 <button className="modal-close" onClick={() => setSelectedProject(null)}>✕</button>
                                 <div className="modal-img-container">
+                                {selectedProject.isIsometric ? (
+                                    <div style={{ background: 'linear-gradient(135deg, #eadddc, #fdfbf9)', padding: '2rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
+                                        <img src={selectedProject.img[0]} alt="Mockup 1" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
+                                        <img src={selectedProject.img[1]} alt="Mockup 2" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
+                                    </div>
+                                ) : (
                                     <img src={selectedProject.img} alt={selectedProject.title} />
+                                )}
                                 </div>
                                 <div className="modal-text">
                                     <h3 style={{ fontSize: '2rem', marginBottom: '1rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
