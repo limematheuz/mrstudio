@@ -25,13 +25,7 @@ export const submitContactForm = async (params) => {
             EMAILJS_PUBLIC_KEY
         );
 
-        // 2. Send auto-reply to client
-        await emailjs.send(
-            EMAILJS_SERVICE_ID,
-            EMAILJS_REPLY_TEMPLATE,
-            params,
-            EMAILJS_PUBLIC_KEY
-        );
+
 
         return { success: true };
     } catch (error) {
