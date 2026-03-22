@@ -2,7 +2,18 @@ export const projectsData = [
     {
         title: "RRJ Remodeling",
         desc: "Una presencia digital que genera confianza. Estructura pensada para que los usuarios encuentren lo que buscan fácilmente.",
-        img: "/images/rrj_mockup.avif",
+        isIsometric: true,
+        img: ["/images/rrj1.avif", "/images/rrj2.avif"],
+        isometricConfig: {
+            background: "linear-gradient(145deg, #1a1a1a 0%, #2d0a0a 30%, #b91c1c 70%, #ef4444 100%)",
+            shadow: "0px 20px 40px rgba(185, 28, 28, 0.5)",
+            transform: { rotateX: 12, rotateY: -20, rotateZ: -3 },
+            hoverTransform: { rotateX: 5, rotateY: -10, rotateZ: -1, scale: 1.05 },
+            images: [
+                { top: '-20%', left: '-5%', zIndex: 2 },
+                { top: '20%', left: '20%', zIndex: 1 }
+            ]
+        },
         link: "https://rrjremodeling.com/"
     },
     {
@@ -11,8 +22,8 @@ export const projectsData = [
         isIsometric: true,
         img: ["/images/pedro1.avif", "/images/pedro2.avif"],
         isometricConfig: {
-            background: "radial-gradient(circle at top left, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%)",
-            shadow: "0px 20px 40px rgba(56, 189, 248, 0.4)",
+            background: "linear-gradient(160deg, #0c4a6e 0%, #0ea5e9 40%, #bae6fd 80%, #f0f9ff 100%)",
+            shadow: "0px 20px 40px rgba(14, 165, 233, 0.35)",
             transform: { rotateX: 15, rotateY: 25, rotateZ: -5 },
             hoverTransform: { rotateX: 5, rotateY: 15, rotateZ: -2, scale: 1.05 },
             images: [
@@ -28,8 +39,8 @@ export const projectsData = [
         isIsometric: true,
         img: ["/images/elha1.avif", "/images/elha2.avif"],
         isometricConfig: {
-            background: "radial-gradient(circle at bottom right, #fdfbf9 0%, #ecd4d4 60%, #eadddc 100%)",
-            shadow: "0px 20px 40px rgba(234, 221, 220, 0.8)",
+            background: "linear-gradient(135deg, #fdf2f8 0%, #ecd4d4 35%, #d4a0a0 70%, #eadddc 100%)",
+            shadow: "0px 20px 40px rgba(212, 160, 160, 0.6)",
             transform: { rotateX: 20, rotateY: -25, rotateZ: 5 },
             hoverTransform: { rotateX: 10, rotateY: -15, rotateZ: 2, scale: 1.05 },
             images: [
