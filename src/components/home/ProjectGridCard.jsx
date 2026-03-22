@@ -41,9 +41,9 @@ export default function ProjectGridCard({ project, onClick }) {
                 {/* Hover Overlay */}
                 <div className="project-grid-overlay">
                     <span style={{ textAlign: 'left' }}>
-                        <span style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem', display: 'block' }}>Caso de Éxito</span>
-                        <h4 style={{ color: 'white', marginBottom: '1rem', fontSize: '1.6rem', lineHeight: 1.2 }}>{project.title}</h4>
-                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'white', fontWeight: 500, borderBottom: '1px solid rgba(255,255,255,0.4)', paddingBottom: '2px' }}>
+                        <span style={{ color: 'var(--accent-color)', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem', display: 'block', fontWeight: 600 }}>Caso de Éxito</span>
+                        <h4 style={{ color: 'var(--text-primary)', marginBottom: '1rem', fontSize: '1.6rem', lineHeight: 1.2 }}>{project.title}</h4>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent-color)', fontWeight: 500, borderBottom: '1px solid var(--accent-color)', paddingBottom: '2px' }}>
                             Ver detalles <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                         </div>
                     </span>
