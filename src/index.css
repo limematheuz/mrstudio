@@ -1094,7 +1094,7 @@ p {
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
-    padding: 3px;
+    padding: 6px;
     background: #e5e5e5;
 }
 
@@ -1124,7 +1124,7 @@ p {
 }
 
 .project-grid-card:hover {
-    padding: 4px;
+    padding: 6px;
     background: transparent;
     box-shadow:
         0 0 20px rgba(139, 92, 246, 0.25),
@@ -1135,8 +1135,8 @@ p {
 .project-grid-card::after {
     content: '';
     position: absolute;
-    inset: 3px;
-    border-radius: calc(var(--radius-card) - 3px);
+    inset: 4px;
+    border-radius: calc(var(--radius-card) - 4px);
     background: #fff;
     z-index: 1;
 }
@@ -1164,7 +1164,7 @@ p {
     position: relative;
     overflow: hidden;
     background: #f4f4f4;
-    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    border-radius: calc(var(--radius-card) - 6px);
 }
 
 .project-grid-img img {
