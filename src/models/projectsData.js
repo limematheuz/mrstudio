@@ -15,7 +15,7 @@ export const projectsData = [
         title: "Elha Epilation Láser",
         desc: "Portales refinados para el sector de belleza, diseñados para hacer que la reserva de citas sea un proceso sencillo y fluido.",
         isIsometric: true,
-        img: ["/images/elha1.png", "/images/elha2.png"],
+        img: ["/images/elha1.avif", "/images/elha2.avif"],
         link: "https://elhaepilationlaser.fr/"
     },
     {
