@@ -1,29 +1,41 @@
 /**
- * Service to handle the contact form submission logic.
- * This separates the API request logic from the UI components.
+ * Contact form service — EmailJS integration.
+ *
+ * Sends two emails per submission:
+ *   1. Admin notification (to mribeiro17.info@gmail.com)
+ *   2. Auto-reply confirmation (to the client)
  */
+import emailjs from '@emailjs/browser';
 
-// We use FormSubmit.co as the backend logic based on the existing code.
-const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/mribeiro17.info@gmail.com';
+const EMAILJS_SERVICE_ID = 'service_k3p67wq';
+const EMAILJS_ADMIN_TEMPLATE = 'template_0d1733t';
+const EMAILJS_REPLY_TEMPLATE = 'template_yw4psi3';
+const EMAILJS_PUBLIC_KEY = 'kfO7H6go0E3oXRJp4';
 
-export const submitContactForm = async (formData) => {
+/**
+ * @param {Object} params — { from_name, user_email, service, message }
+ */
+export const submitContactForm = async (params) => {
     try {
-        const response = await fetch(FORMSUBMIT_ENDPOINT, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json'
-            },
-            body: formData
-        });
+        // 1. Send admin notification
+        await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_ADMIN_TEMPLATE,
+            params,
+            EMAILJS_PUBLIC_KEY
+        );
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        // 2. Send auto-reply to client
+        await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_REPLY_TEMPLATE,
+            params,
+            EMAILJS_PUBLIC_KEY
+        );
 
-        const data = await response.json();
-        return { success: true, data };
+        return { success: true };
     } catch (error) {
-        console.error("Error submitting contact form:", error);
-        return { success: false, error: error.message };
+        console.error('EmailJS error:', error);
+        return { success: false, error: error?.text || error.message };
     }
 };

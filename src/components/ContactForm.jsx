@@ -4,19 +4,29 @@ import { submitContactForm } from '../services/contactService';
 
 export default function ContactForm({ defaultService = '' }) {
     const [status, setStatus] = useState('idle');
+    const [consent, setConsent] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!consent) return;
+
         setStatus('sending');
 
         const form = e.target;
-        const body = new FormData(form);
 
-        const result = await submitContactForm(body);
+        const params = {
+            from_name: form.name.value,
+            user_email: form.email.value,
+            service: form.service.value,
+            message: form.message.value
+        };
+
+        const result = await submitContactForm(params);
 
         if (result.success) {
             setStatus('success');
             form.reset();
+            setConsent(false);
         } else {
             console.error(result.error);
             setStatus('error');
@@ -63,13 +73,45 @@ export default function ContactForm({ defaultService = '' }) {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        style={{ textAlign: 'center', padding: '4rem 2rem' }}
+                        transition={{ type: 'spring', damping: 15 }}
+                        style={{ textAlign: 'center', padding: '3rem 2rem' }}
                     >
-                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ margin: '0 auto 1.5rem auto' }}><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                        <h3 style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>¡Solicitud Recibida!</h3>
-                        <p style={{ color: 'var(--text-secondary)' }}>
-                            Nos pondremos en contacto contigo lo más pronto posible para conversar sobre tu proyecto.
+                        {/* Animated check circle */}
+                        <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: 'spring', damping: 10, delay: 0.1 }}
+                            style={{
+                                width: '90px', height: '90px', borderRadius: '50%',
+                                background: 'linear-gradient(135deg, #8b5cf6, #633af0)',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                margin: '0 auto 1.5rem auto',
+                                boxShadow: '0 15px 40px rgba(139, 92, 246, 0.3)'
+                            }}
+                        >
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </motion.div>
+
+                        <h3 style={{ fontSize: '2rem', marginBottom: '0.8rem', color: 'var(--text-primary)', fontWeight: 700 }}>
+                            ¡Tu mensaje está en camino! 🚀
+                        </h3>
+                        <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '0.5rem' }}>
+                            Hemos enviado una <strong>confirmación a tu correo</strong>.
                         </p>
+                        <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.6, marginBottom: '2rem' }}>
+                            Te responderemos en menos de <strong>24 horas laborables</strong>. Si no ves el email, revisa tu carpeta de spam.
+                        </p>
+
+                        <button
+                            onClick={() => setStatus('idle')}
+                            className="btn-primary"
+                            style={{ padding: '0.9rem 2rem', fontSize: '1rem' }}
+                        >
+                            Enviar otra solicitud
+                        </button>
                     </motion.div>
                 ) : (
                     <>
@@ -88,9 +130,6 @@ export default function ContactForm({ defaultService = '' }) {
                             </p>
                         </div>
                         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.8rem' }}>
-                            <input type="hidden" name="_subject" value="Nuevo contacto de MRStudio Web!" />
-                            <input type="hidden" name="_captcha" value="false" />
-                            <input type="hidden" name="_template" value="box" />
 
                             <div>
                                 <label style={labelStyle}>Nombre Completo</label>
@@ -106,12 +145,12 @@ export default function ContactForm({ defaultService = '' }) {
                                 <label style={labelStyle}>¿En qué servicio estás interesado?</label>
                                 <select name="service" defaultValue={defaultService} style={inputStyle} required>
                                     <option value="" disabled>Selecciona un servicio</option>
-                                    <option value="1 Página">Web Minimalista (1 Página)</option>
-                                    <option value="3 Páginas">Web Standard (Hasta 3 Páginas)</option>
-                                    <option value="5 Páginas">Web Premium (Hasta 5 Páginas)</option>
-                                    <option value="Tienda Online">Tienda Online (E-commerce)</option>
-                                    <option value="Servicios Adicionales">Servicios Adicionales (SEO/Mantenimiento)</option>
-                                    <option value="Otro">Otro Proyecto a Medida</option>
+                                    <option value="Web Minimalista (1 Página)">Web Minimalista (1 Página)</option>
+                                    <option value="Web Standard (Hasta 3 Páginas)">Web Standard (Hasta 3 Páginas)</option>
+                                    <option value="Web Premium (Hasta 5 Páginas)">Web Premium (Hasta 5 Páginas)</option>
+                                    <option value="Tienda Online (E-commerce)">Tienda Online (E-commerce)</option>
+                                    <option value="Servicios Adicionales (SEO/Mantenimiento)">Servicios Adicionales (SEO/Mantenimiento)</option>
+                                    <option value="Otro Proyecto a Medida">Otro Proyecto a Medida</option>
                                 </select>
                             </div>
 
@@ -120,7 +159,30 @@ export default function ContactForm({ defaultService = '' }) {
                                 <textarea name="message" rows="4" required style={{ ...inputStyle, resize: 'vertical' }} placeholder="Cuéntame un poco más sobre lo que tienes en mente..."></textarea>
                             </div>
 
-                            <button type="submit" className="btn-primary" disabled={status === 'sending'} style={{ marginTop: '1.5rem', width: '100%', padding: '1.2rem', fontSize: '1.1rem' }}>
+                            {/* RGPD Consent */}
+                            <label style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem', cursor: 'pointer', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                                <input
+                                    type="checkbox"
+                                    checked={consent}
+                                    onChange={(e) => setConsent(e.target.checked)}
+                                    required
+                                    style={{ marginTop: '3px', accentColor: 'var(--accent-color)', width: '18px', height: '18px', flexShrink: 0 }}
+                                />
+                                <span>
+                                    Acepto que MRStudio almacene mis datos con el único fin de responder a mi consulta, conforme a la <a href="/politica-de-privacidad" style={{ color: 'var(--accent-color)', textDecoration: 'underline' }}>Política de Privacidad</a>.
+                                </span>
+                            </label>
+
+                            <button
+                                type="submit"
+                                className="btn-primary"
+                                disabled={status === 'sending' || !consent}
+                                style={{
+                                    marginTop: '0.5rem', width: '100%', padding: '1.2rem', fontSize: '1.1rem',
+                                    opacity: !consent ? 0.5 : 1,
+                                    cursor: !consent ? 'not-allowed' : 'pointer'
+                                }}
+                            >
                                 {status === 'sending' ? 'Enviando...' : 'Pedir presupuesto'}
                             </button>
 
@@ -128,7 +190,11 @@ export default function ContactForm({ defaultService = '' }) {
                                 🔒 Sin compromiso. Respondemos en menos de 24 horas.
                             </p>
 
-                            {status === 'error' && <p style={{ color: 'red', marginTop: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>Hubo un error al enviar. Por favor intenta de nuevo en unos minutos.</p>}
+                            {status === 'error' && (
+                                <p style={{ color: '#ef4444', marginTop: '0.5rem', textAlign: 'center', fontSize: '0.9rem', background: 'rgba(239,68,68,0.05)', padding: '1rem', borderRadius: '10px' }}>
+                                    Hubo un error al enviar. Por favor intenta de nuevo en unos minutos.
+                                </p>
+                            )}
                         </form>
                     </>
                 )}
