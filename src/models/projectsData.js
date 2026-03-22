@@ -53,7 +53,17 @@ export const projectsData = [
     {
         title: "Centri Elha (Italia)",
         desc: "Consolidación de marca en Italia con una interfaz limpia, enfocada en la estética premium y servicios de belleza.",
-        img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=1200",
+        isIsometric: true,
+        img: ["/images/centrielha1.avif"],
+        isometricConfig: {
+            background: "linear-gradient(150deg, #fff5f2 0%, #ffcfc7 30%, #FF563D 70%, #e63e25 100%)",
+            shadow: "0px 20px 40px rgba(255, 86, 61, 0.4)",
+            transform: { rotateX: 18, rotateY: 20, rotateZ: -4 },
+            hoverTransform: { rotateX: 8, rotateY: 10, rotateZ: -1, scale: 1.06 },
+            images: [
+                { top: '0%', left: '0%', zIndex: 1 }
+            ]
+        },
         link: "https://centrielha.it/"
     },
     {
