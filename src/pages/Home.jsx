@@ -190,15 +190,18 @@ export default function Home() {
                                 <div className="modal-img-container">
                                 {selectedProject.isIsometric ? (
                                     <div style={{ width: '100%', height: '100%', background: selectedProject.isometricConfig?.background || '#fdfbf9', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: '1500px' }}>
+                                        {selectedProject.isometricConfig?.lightSpots?.map((spot, i) => (
+                                            <div key={i} style={{ position: 'absolute', top: spot.top, left: spot.left, width: spot.size, height: spot.size, borderRadius: '50%', background: spot.color, filter: 'blur(40px)', pointerEvents: 'none', zIndex: 0 }} />
+                                        ))}
                                         <motion.div 
-                                            style={{ position: 'relative', width: selectedProject.img.length === 1 ? '220px' : '260px', height: selectedProject.img.length === 1 ? '140px' : '150px', transformStyle: 'preserve-3d' }}
+                                            style={{ position: 'relative', width: selectedProject.img.length === 1 ? '200px' : '280px', height: selectedProject.img.length === 1 ? '130px' : '170px', transformStyle: 'preserve-3d', zIndex: 1 }}
                                             initial={selectedProject.isometricConfig?.transform}
                                             whileHover={selectedProject.isometricConfig?.hoverTransform}
                                             transition={{ duration: 0.6, ease: "easeOut" }}
                                         >
-                                            <img src={selectedProject.img[0]} alt="Mockup 1" style={{ position: 'absolute', top: selectedProject.isometricConfig?.images[0].top, left: selectedProject.isometricConfig?.images[0].left, zIndex: selectedProject.isometricConfig?.images[0].zIndex, width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px', boxShadow: '-10px 15px 30px rgba(0,0,0,0.15)', border: '1px solid rgba(0,0,0,0.05)' }} />
+                                            <img src={selectedProject.img[0]} alt="Mockup 1" style={{ position: 'absolute', top: selectedProject.isometricConfig?.images[0].top, left: selectedProject.isometricConfig?.images[0].left, zIndex: selectedProject.isometricConfig?.images[0].zIndex, width: selectedProject.isometricConfig?.images[0].width || '100%', height: selectedProject.isometricConfig?.images[0].height || '100%', objectFit: 'cover', borderRadius: '10px', boxShadow: '0 25px 50px rgba(0,0,0,0.25)', border: '1px solid rgba(255,255,255,0.1)' }} />
                                             {selectedProject.img.length > 1 && (
-                                                <img src={selectedProject.img[1]} alt="Mockup 2" style={{ position: 'absolute', top: selectedProject.isometricConfig?.images[1].top, left: selectedProject.isometricConfig?.images[1].left, zIndex: selectedProject.isometricConfig?.images[1].zIndex, width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px', boxShadow: '-15px 25px 40px rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.5)' }} />
+                                                <img src={selectedProject.img[1]} alt="Mockup 2" style={{ position: 'absolute', top: selectedProject.isometricConfig?.images[1].top, left: selectedProject.isometricConfig?.images[1].left, zIndex: selectedProject.isometricConfig?.images[1].zIndex, width: selectedProject.isometricConfig?.images[1].width || '100%', height: selectedProject.isometricConfig?.images[1].height || '100%', objectFit: 'cover', borderRadius: '10px', boxShadow: '0 30px 60px rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.15)' }} />
                                             )}
                                         </motion.div>
                                     </div>
