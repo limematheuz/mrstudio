@@ -1,10 +1,10 @@
 // Unified MRStudio brand gradient (purple) applied to all isometric cards
 const brandConfig = {
-    background: "linear-gradient(145deg, #0f0a1a 0%, #1e1145 20%, #4c1d95 45%, #7c3aed 65%, #8b5cf6 80%, #c4b5fd 100%)",
-    shadow: "0px 20px 40px rgba(139, 92, 246, 0.4)",
+    background: "linear-gradient(145deg, #ede9fe 0%, #ddd6fe 20%, #c4b5fd 45%, #a78bfa 65%, #8b5cf6 80%, #7c3aed 100%)",
+    shadow: "0px 20px 40px rgba(139, 92, 246, 0.35)",
     lightSpots: [
-        { top: '10%', left: '65%', size: '200px', color: 'rgba(139,92,246,0.2)' },
-        { top: '65%', left: '15%', size: '160px', color: 'rgba(196,181,253,0.15)' }
+        { top: '8%', left: '60%', size: '200px', color: 'rgba(237,233,254,0.5)' },
+        { top: '60%', left: '12%', size: '170px', color: 'rgba(196,181,253,0.35)' }
     ]
 };
 
