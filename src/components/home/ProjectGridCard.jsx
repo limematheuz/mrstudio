@@ -5,7 +5,7 @@ export default function ProjectGridCard({ project, onClick }) {
         <motion.div
             className="project-grid-card"
             onClick={onClick}
-            whileHover={{ y: -5 }}
+            whileHover={{ y: -5, boxShadow: project.isIsometric ? '0px 20px 40px rgba(234, 221, 220, 0.8)' : undefined }}
         >
             <div className="project-grid-img" style={{ height: '350px' }}>
                 {project.isIsometric ? (

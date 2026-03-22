@@ -189,9 +189,15 @@ export default function Home() {
                                 <button className="modal-close" onClick={() => setSelectedProject(null)}>✕</button>
                                 <div className="modal-img-container">
                                 {selectedProject.isIsometric ? (
-                                    <div style={{ background: 'linear-gradient(135deg, #eadddc, #fdfbf9)', padding: '2rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
-                                        <img src={selectedProject.img[0]} alt="Mockup 1" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
-                                        <img src={selectedProject.img[1]} alt="Mockup 2" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
+                                    <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #eadddc, #fdfbf9)', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: '1500px' }}>
+                                        <motion.div 
+                                            style={{ position: 'relative', width: '260px', height: '150px', transformStyle: 'preserve-3d', transform: 'rotateX(20deg) rotateY(-25deg) rotateZ(5deg)' }}
+                                            whileHover={{ rotateX: 10, rotateY: -15, rotateZ: 2, scale: 1.05 }}
+                                            transition={{ duration: 0.6, ease: "easeOut" }}
+                                        >
+                                            <img src={selectedProject.img[0]} alt="Mockup 1" style={{ position: 'absolute', top: '-15%', left: '-10%', width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px', boxShadow: '-10px 15px 30px rgba(0,0,0,0.1)', border: '1px solid rgba(0,0,0,0.05)' }} />
+                                            <img src={selectedProject.img[1]} alt="Mockup 2" style={{ position: 'absolute', top: '15%', left: '15%', width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px', boxShadow: '-15px 25px 40px rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.5)' }} />
+                                        </motion.div>
                                     </div>
                                 ) : (
                                     <img src={selectedProject.img} alt={selectedProject.title} />
