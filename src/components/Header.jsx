@@ -72,7 +72,7 @@ export default function Header() {
                     <a href="/#proyectos" className={isActive('/#proyectos') ? 'active' : ''} onClick={closeMenu}>Proyectos</a>
                 </nav>
 
-                <a href="#contacto" className="btn-primary btn-header desktop-only-btn" style={{ padding: '0.4rem 1.2rem', fontSize: '0.85rem' }}>
+                <a href="/#contacto" className="btn-primary btn-header desktop-only-btn" style={{ padding: '0.4rem 1.2rem', fontSize: '0.85rem' }}>
                     Contactar
                 </a>
             </header>
@@ -96,7 +96,7 @@ export default function Header() {
                 </div>
 
                 <div className="mobile-menu-bottom">
-                    <a href="#contacto" className="btn-primary mobile-contact-btn" onClick={closeMenu}>
+                    <a href="/#contacto" className="btn-primary mobile-contact-btn" onClick={closeMenu}>
                         Contactar
                     </a>
                     
