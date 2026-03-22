@@ -12,6 +12,9 @@ import Home from './pages/Home';
 import AboutMe from './pages/AboutMe';
 import ServiceDetail from './pages/ServiceDetail';
 import Precios from './pages/Precios';
+import PoliticaPrivacidad from './pages/PoliticaPrivacidad';
+import AvisoLegal from './pages/AvisoLegal';
+import TerminosServicio from './pages/TerminosServicio';
 import NotFound from './pages/NotFound';
 
 // Scroll to top on route change
@@ -36,6 +39,9 @@ export default function App() {
                     <Route path="/aboutme" element={<AboutMe />} />
                     <Route path="/precios" element={<Precios />} />
                     <Route path="/servicios/:id" element={<ServiceDetail />} />
+                    <Route path="/politica-de-privacidad" element={<PoliticaPrivacidad />} />
+                    <Route path="/aviso-legal" element={<AvisoLegal />} />
+                    <Route path="/terminos-del-servicio" element={<TerminosServicio />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>

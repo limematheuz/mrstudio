@@ -23,9 +23,9 @@ export default function Footer() {
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             <h4 style={{ color: 'var(--text-primary)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>Legal</h4>
-                            <a href="#" className="footer-link">Política de privacidad</a>
-                            <a href="#" className="footer-link">Aviso Legal</a>
-                            <a href="#" className="footer-link">Términos del servicio</a>
+                            <Link to="/politica-de-privacidad" className="footer-link">Política de privacidad</Link>
+                            <Link to="/aviso-legal" className="footer-link">Aviso Legal</Link>
+                            <Link to="/terminos-del-servicio" className="footer-link">Términos del servicio</Link>
                         </div>
                     </div>
                 </div>
