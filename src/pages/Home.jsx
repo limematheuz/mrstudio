@@ -189,14 +189,15 @@ export default function Home() {
                                 <button className="modal-close" onClick={() => setSelectedProject(null)}>✕</button>
                                 <div className="modal-img-container">
                                 {selectedProject.isIsometric ? (
-                                    <div style={{ width: '100%', height: '100%', background: selectedProject.isometricColors?.gradient || '#fdfbf9', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: '1500px' }}>
+                                    <div style={{ width: '100%', height: '100%', background: selectedProject.isometricConfig?.background || '#fdfbf9', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: '1500px' }}>
                                         <motion.div 
-                                            style={{ position: 'relative', width: '260px', height: '150px', transformStyle: 'preserve-3d', transform: 'rotateX(20deg) rotateY(-25deg) rotateZ(5deg)' }}
-                                            whileHover={{ rotateX: 10, rotateY: -15, rotateZ: 2, scale: 1.05 }}
+                                            style={{ position: 'relative', width: '260px', height: '150px', transformStyle: 'preserve-3d' }}
+                                            initial={selectedProject.isometricConfig?.transform}
+                                            whileHover={selectedProject.isometricConfig?.hoverTransform}
                                             transition={{ duration: 0.6, ease: "easeOut" }}
                                         >
-                                            <img src={selectedProject.img[0]} alt="Mockup 1" style={{ position: 'absolute', top: '-15%', left: '-10%', width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px', boxShadow: '-10px 15px 30px rgba(0,0,0,0.1)', border: '1px solid rgba(0,0,0,0.05)' }} />
-                                            <img src={selectedProject.img[1]} alt="Mockup 2" style={{ position: 'absolute', top: '15%', left: '15%', width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px', boxShadow: '-15px 25px 40px rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.5)' }} />
+                                            <img src={selectedProject.img[0]} alt="Mockup 1" style={{ position: 'absolute', top: selectedProject.isometricConfig?.images[0].top, left: selectedProject.isometricConfig?.images[0].left, zIndex: selectedProject.isometricConfig?.images[0].zIndex, width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px', boxShadow: '-10px 15px 30px rgba(0,0,0,0.1)', border: '1px solid rgba(0,0,0,0.05)' }} />
+                                            <img src={selectedProject.img[1]} alt="Mockup 2" style={{ position: 'absolute', top: selectedProject.isometricConfig?.images[1].top, left: selectedProject.isometricConfig?.images[1].left, zIndex: selectedProject.isometricConfig?.images[1].zIndex, width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px', boxShadow: '-15px 25px 40px rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.5)' }} />
                                         </motion.div>
                                     </div>
                                 ) : (

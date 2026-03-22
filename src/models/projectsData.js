@@ -10,9 +10,15 @@ export const projectsData = [
         desc: "Digitalización local que facilita el contacto. Diseño minimalista y formularios claros para conectar con clientes.",
         isIsometric: true,
         img: ["/images/pedro1.avif", "/images/pedro2.avif"],
-        isometricColors: {
-            gradient: "linear-gradient(135deg, #e0f2fe, #f0f9ff)",
-            shadow: "0px 20px 40px rgba(186, 230, 253, 0.8)"
+        isometricConfig: {
+            background: "radial-gradient(circle at top left, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%)",
+            shadow: "0px 20px 40px rgba(56, 189, 248, 0.4)",
+            transform: { rotateX: 15, rotateY: 25, rotateZ: -5 },
+            hoverTransform: { rotateX: 5, rotateY: 15, rotateZ: -2, scale: 1.05 },
+            images: [
+                { top: '-10%', left: '20%', zIndex: 1 },
+                { top: '15%', left: '-15%', zIndex: 2 }
+            ]
         },
         link: "https://pedrosremodelingnc.com/"
     },
@@ -21,9 +27,15 @@ export const projectsData = [
         desc: "Portales refinados para el sector de belleza, diseñados para hacer que la reserva de citas sea un proceso sencillo y fluido.",
         isIsometric: true,
         img: ["/images/elha1.avif", "/images/elha2.avif"],
-        isometricColors: {
-            gradient: "linear-gradient(135deg, #eadddc, #fdfbf9)",
-            shadow: "0px 20px 40px rgba(234, 221, 220, 0.8)"
+        isometricConfig: {
+            background: "radial-gradient(circle at bottom right, #fdfbf9 0%, #ecd4d4 60%, #eadddc 100%)",
+            shadow: "0px 20px 40px rgba(234, 221, 220, 0.8)",
+            transform: { rotateX: 20, rotateY: -25, rotateZ: 5 },
+            hoverTransform: { rotateX: 10, rotateY: -15, rotateZ: 2, scale: 1.05 },
+            images: [
+                { top: '-15%', left: '-10%', zIndex: 1 },
+                { top: '15%', left: '15%', zIndex: 2 }
+            ]
         },
         link: "https://elhaepilationlaser.fr/"
     },
